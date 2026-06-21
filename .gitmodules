@@ -1,0 +1,3 @@
+[submodule "themes/minimal-black"]
+	path = themes/minimal-black
+	url = https://gitlab.com/jimchr12/hugo-minimal-black.git
