@@ -10,7 +10,7 @@ My engineering approach is uniquely informed by my academic background in Geophy
 
 ---
 
-**Site Reliability Engineer III** — [Xerox](https://xerox.com)
+**Site Reliability Engineer III** — Enterprise Retail SaaS Publisher
 *August 2024 – Present • Lexington, KY / Remote*
 
 Engineer and maintain critical infrastructure for a high-traffic SaaS Publishing Platform for Retail across dual-cloud environments (AWS and Azure).
@@ -23,7 +23,7 @@ Key accomplishments:
 
 ---
 
-**Administrative Systems Engineer II** — [Kentucky Geological Survey](https://www.uky.edu/KGS/)
+**Administrative Systems Engineer II** — State Geological Research Institute
 *February 2022 – August 2024 • Lexington, KY*
 
 Led the design, implementation, and administration of geological data platforms and server infrastructure.
@@ -36,7 +36,7 @@ Key accomplishments:
 
 ---
 
-**Software Developer & Systems Administrator** — Phoenix Flow Control
+**Software Developer & Systems Administrator** — Industrial Manufacturing & Distribution Firm
 *January 2014 – June 2021 • Houston, TX*
 
 Designed and managed software systems and cloud infrastructure for a manufacturing and distribution firm.

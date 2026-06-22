@@ -4,14 +4,14 @@ date = "2026-06-21"
 description = "Designing and implementing an 18-node bare-metal Kubernetes cluster for geological research platforms."
 github = "https://github.com/finn-e"
 icon = "fa-solid fa-cubes"
-subtitle = "Kentucky Geological Survey Bare-Metal Infrastructure"
+subtitle = "Bare-Metal Research Infrastructure"
 stack = ["Talos OS", "Kubernetes", "Rook/Ceph", "OpenTofu", "Ansible", "GitOps", "HashiCorp Vault"]
 featured = true
 +++
 
 ## Overview
 
-At the **Kentucky Geological Survey (KGS)**, the legacy server infrastructure supporting geological research, web APIs, and data indexing tools was aging and prone to configuration drift. 
+At a **State Geological Research Institute**, the legacy server infrastructure supporting geological research, web APIs, and data indexing tools was aging and prone to configuration drift. 
 
 To resolve these challenges, I designed and implemented an **18-node bare-metal Kubernetes cluster** driven by **Talos OS** and automated entirely via declarative GitOps pipelines, achieving **99.99% uptime** for mission-critical geological research tools.
 

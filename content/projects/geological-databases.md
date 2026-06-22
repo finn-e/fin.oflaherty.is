@@ -4,14 +4,14 @@ date = "2026-06-21"
 description = "Designing high-throughput Web APIs, caching systems, and full-text search indexes for geological discovery platforms."
 github = "https://github.com/finn-e"
 icon = "fa-solid fa-database"
-subtitle = "KGS Geological Data Search & Discovery Systems"
+subtitle = "Geological Data Search & Discovery Systems"
 stack = ["Python", "Flask", "Django", "Vue.js", "Redis", "Elasticsearch", "SQL"]
 featured = false
 +++
 
 ## Overview
 
-During my tenure at the **Kentucky Geological Survey (KGS)**, I engineered multiple web applications and APIs designed to make millions of geological data points, microscopic thin sections, and archives accessible to researchers and the public. 
+During my tenure at a **State Geological Research Institute**, I engineered multiple web applications and APIs designed to make millions of geological data points, microscopic thin sections, and archives accessible to researchers and the public. 
 
 These initiatives included rebuilding the **Thin Sections Database** and creating the **Data Preservation Initiative Discovery Portal**.
 
@@ -51,7 +51,7 @@ Geologists require rapid access to high-resolution scans of rock thin sections (
 ## 2. Data Preservation Initiative Discovery Portal
 
 ### The Challenge
-KGS holds an archive of over 100,000 paper and digital documents, maps, and reports. Researchers lacked an efficient method to perform discovery or search across these documents.
+The institute holds an archive of over 100,000 paper and digital documents, maps, and reports. Researchers lacked an efficient method to perform discovery or search across these documents.
 
 ### The Solution
 - Engineered a robust **Django backend** and a responsive **Vue.js** frontend.

@@ -11,16 +11,13 @@
     <loc>https://fin.oflaherty.is/projects/</loc>
     <lastmod>2026-06-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://fin.oflaherty.is/projects/kgs-kubernetes-overhaul/</loc>
+    <loc>https://fin.oflaherty.is/projects/kubernetes-overhaul/</loc>
     <lastmod>2026-06-21T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://fin.oflaherty.is/categories/</loc>
     <lastmod>2026-06-21T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://fin.oflaherty.is/tags/database/</loc>
-    <lastmod>2026-06-21T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://fin.oflaherty.is/projects/dcsg-stage-opentofu/</loc>
     <lastmod>2026-06-21T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://fin.oflaherty.is/categories/debugging/</loc>
@@ -41,7 +38,10 @@
     <loc>https://fin.oflaherty.is/tags/embedded/</loc>
     <lastmod>2026-06-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://fin.oflaherty.is/projects/kgs-geological-databases/</loc>
+    <loc>https://fin.oflaherty.is/projects/enterprise-stage-opentofu/</loc>
+    <lastmod>2026-06-21T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://fin.oflaherty.is/projects/geological-databases/</loc>
     <lastmod>2026-06-21T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://fin.oflaherty.is/tags/kubernetes/</loc>

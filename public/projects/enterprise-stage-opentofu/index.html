@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>DCSG Staging &amp; OpenTofu Codification | Fin o&#39;Flaherty | Site Reliability Engineer</title>
+<title>Enterprise Staging &amp; OpenTofu Codification | Fin o&#39;Flaherty | Site Reliability Engineer</title>
 
 <meta name="description" content="Diagnosing multi-tier domain resolution issues and implementing automated Active Directory &#43; multi-cloud provisioning using OpenTofu." />
 
@@ -21,7 +21,7 @@
 
 
 
-  <link rel="apple-touch-icon" href="/home/fin/kitchen/fin.oflaherty.is/content/projects/dcsg-stage-opentofu.md" />
+  <link rel="apple-touch-icon" href="/home/fin/kitchen/fin.oflaherty.is/content/projects/enterprise-stage-opentofu.md" />
 
 
 
@@ -306,7 +306,7 @@
     <div class="article-layout">
       <article class="article-main space-y-4">
         <header class="space-y-2">
-          <h1 class="heading-page text-2xl sm:text-3xl">DCSG Staging &amp; OpenTofu Codification</h1>
+          <h1 class="heading-page text-2xl sm:text-3xl">Enterprise Staging &amp; OpenTofu Codification</h1>
 
           <div class="text-[0.75rem] text-muted">
             
@@ -377,7 +377,7 @@ graph TD
   </a>
 </h3>
 <ul>
-<li>Provisions a single app server pointing directly to the test SQL server (<code>TSQL#</code>) to validate base connectivity and baseline configurations.</li>
+<li>Provisions a single app server pointing directly to the test database instance to validate base connectivity and baseline configurations.</li>
 </ul>
 <h3 id="set-2-load-balanced-production-cloning">
   <a href="#set-2-load-balanced-production-cloning" class="md-heading-anchor">
@@ -385,8 +385,8 @@ graph TD
   </a>
 </h3>
 <ul>
-<li>Provisions load-balanced application instances (<code>dcsg1</code> and <code>dcsg2</code>) behind a sticky-session Application Load Balancer (ALB) pointing to the production SQL server (<code>PSQL#</code>).</li>
-<li>Automatically provisions a staging instance (<code>dcsgstage</code>) pointing to <code>TSQL#</code>.</li>
+<li>Provisions load-balanced application instances (<code>app-prod1</code> and <code>app-prod2</code>) behind a sticky-session Application Load Balancer (ALB) pointing to the production database cluster.</li>
+<li>Automatically provisions a staging instance (<code>app-stage</code>) pointing to the test database.</li>
 <li>Utilizes <strong>Route 53</strong> with active-passive DNS routing records and health checks to manage failover.</li>
 </ul>
 <hr>
@@ -399,7 +399,7 @@ graph TD
 <ol>
 <li><strong>Domain Leave</strong>: An SSM script removes the target Windows Server instance from the domain.</li>
 <li><strong>State Transition</strong>: The instance is stopped, and an AMI image is compiled.</li>
-<li><strong>Domain Join</strong>: Cloned instances (<code>dcsg2</code>, <code>dcsgstage</code>) boot up, run a sysprep-equivalent script to rename the computer, and re-join the AD domain with encrypted secrets.</li>
+<li><strong>Domain Join</strong>: Cloned instances (<code>app-prod2</code>, <code>app-stage</code>) boot up, run a sysprep-equivalent script to rename the computer, and re-join the AD domain with encrypted secrets.</li>
 <li><strong>Database Sync</strong>: An SSM PowerShell script runs a native SQL backup from the test database cluster to an FSx share and restores it onto the production database instance to populate the environment.</li>
 </ol>
 <hr>
@@ -409,7 +409,7 @@ graph TD
   </a>
 </h2>
 <ul>
-<li><strong>Investigation</strong>: Troubleshooted domain resolution issues for the staging URL (<code>dcsgstage.cloud.lexmark.com</code>).</li>
+<li><strong>Investigation</strong>: Troubleshooted domain resolution issues for the staging URL (<code>stage.cloud.enterprise.com</code>).</li>
 <li><strong>Root Cause</strong>: Identified differences in DNS views (split-horizon DNS) causing internal collectors (e.g. LogicMonitor) to resolve stale IP addresses while public DNS resolved correctly.</li>
 <li><strong>Resolution</strong>: Implemented localized hosts override files, DNS routing table updates, and SSL cert verification checkpoints to ensure matching states across public and private scopes.</li>
 </ul>

@@ -1,5 +1,5 @@
 +++
-title = "DCSG Staging & OpenTofu Codification"
+title = "Enterprise Staging & OpenTofu Codification"
 date = "2026-06-21"
 description = "Diagnosing multi-tier domain resolution issues and implementing automated Active Directory + multi-cloud provisioning using OpenTofu."
 github = "https://github.com/finn-e"
@@ -51,11 +51,11 @@ graph TD
 The environments are split into two execution stages:
 
 ### Set 1: Bootstrap Environment
-- Provisions a single app server pointing directly to the test SQL server (`TSQL#`) to validate base connectivity and baseline configurations.
+- Provisions a single app server pointing directly to the test database instance to validate base connectivity and baseline configurations.
 
 ### Set 2: Load-Balanced Production Cloning
-- Provisions load-balanced application instances (`dcsg1` and `dcsg2`) behind a sticky-session Application Load Balancer (ALB) pointing to the production SQL server (`PSQL#`).
-- Automatically provisions a staging instance (`dcsgstage`) pointing to `TSQL#`.
+- Provisions load-balanced application instances (`app-prod1` and `app-prod2`) behind a sticky-session Application Load Balancer (ALB) pointing to the production database cluster.
+- Automatically provisions a staging instance (`app-stage`) pointing to the test database.
 - Utilizes **Route 53** with active-passive DNS routing records and health checks to manage failover.
 
 ---
@@ -66,13 +66,13 @@ Cloning application environments in an AD-managed enterprise network causes SID 
 
 1. **Domain Leave**: An SSM script removes the target Windows Server instance from the domain.
 2. **State Transition**: The instance is stopped, and an AMI image is compiled.
-3. **Domain Join**: Cloned instances (`dcsg2`, `dcsgstage`) boot up, run a sysprep-equivalent script to rename the computer, and re-join the AD domain with encrypted secrets.
+3. **Domain Join**: Cloned instances (`app-prod2`, `app-stage`) boot up, run a sysprep-equivalent script to rename the computer, and re-join the AD domain with encrypted secrets.
 4. **Database Sync**: An SSM PowerShell script runs a native SQL backup from the test database cluster to an FSx share and restores it onto the production database instance to populate the environment.
 
 ---
 
 ## Staging Resolution Diagnostics
 
-- **Investigation**: Troubleshooted domain resolution issues for the staging URL (`dcsgstage.cloud.lexmark.com`).
+- **Investigation**: Troubleshooted domain resolution issues for the staging URL (`stage.cloud.enterprise.com`).
 - **Root Cause**: Identified differences in DNS views (split-horizon DNS) causing internal collectors (e.g. LogicMonitor) to resolve stale IP addresses while public DNS resolved correctly.
 - **Resolution**: Implemented localized hosts override files, DNS routing table updates, and SSL cert verification checkpoints to ensure matching states across public and private scopes.

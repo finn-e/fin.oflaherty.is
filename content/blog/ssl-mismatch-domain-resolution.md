@@ -8,7 +8,7 @@ categories = ["debugging"]
 
 ## The Symptom
 
-Internal monitoring agents and collectors (specifically **LogicMonitor**) began throwing alerts indicating that the staging environment endpoint `lundstage.cloud.lexmark.com` was serving an invalid/expired SSL certificate. 
+Internal monitoring agents and collectors (specifically **LogicMonitor**) began throwing alerts indicating that the staging environment endpoint `stage-api.cloud.enterprise.com` was serving an invalid/expired SSL certificate. 
 
 Curiously, developers accessing the staging site from their home connections reported no SSL warnings—the site loaded cleanly with a valid certificate expiring in December 2026.
 
@@ -33,11 +33,11 @@ graph TD
 We ran external query diagnostics using `curl` and `openssl` against the public endpoint:
 
 ```bash
-openssl s_client -connect lundstage.cloud.lexmark.com:443 -servername lundstage.cloud.lexmark.com
+openssl s_client -connect stage-api.cloud.enterprise.com:443 -servername stage-api.cloud.enterprise.com
 ```
 
 The output showed a valid certificate:
-- **Common Name (CN)**: `*.cloud.lexmark.com`
+- **Common Name (CN)**: `*.cloud.enterprise.com`
 - **Validity**: Expires December 2026
 - **Resolved IPs**: `32.184.176.197` and `44.230.127.219`
 

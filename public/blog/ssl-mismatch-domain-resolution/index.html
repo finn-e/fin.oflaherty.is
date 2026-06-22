@@ -331,7 +331,7 @@
     The Symptom
   </a>
 </h2>
-<p>Internal monitoring agents and collectors (specifically <strong>LogicMonitor</strong>) began throwing alerts indicating that the staging environment endpoint <code>lundstage.cloud.lexmark.com</code> was serving an invalid/expired SSL certificate.</p>
+<p>Internal monitoring agents and collectors (specifically <strong>LogicMonitor</strong>) began throwing alerts indicating that the staging environment endpoint <code>stage-api.cloud.enterprise.com</code> was serving an invalid/expired SSL certificate.</p>
 <p>Curiously, developers accessing the staging site from their home connections reported no SSL warnings—the site loaded cleanly with a valid certificate expiring in December 2026.</p>
 <hr>
 <h2 id="technical-auditing--dns-resolution">
@@ -381,7 +381,7 @@ graph TD
     class="mb-codeblock-content" 
     data-state="expanded"
   >
-    <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">openssl s_client -connect lundstage.cloud.lexmark.com:443 -servername lundstage.cloud.lexmark.com</span></span></code></pre></div><div class="mb-collapse-overlay">
+    <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">openssl s_client -connect stage-api.cloud.enterprise.com:443 -servername stage-api.cloud.enterprise.com</span></span></code></pre></div><div class="mb-collapse-overlay">
         <button class="mb-expand-trigger">
           <i class="fas fa-chevron-down"></i>
           <span>Click to expand</span>
@@ -666,7 +666,7 @@ graph TD
 }
 </style><p>The output showed a valid certificate:</p>
 <ul>
-<li><strong>Common Name (CN)</strong>: <code>*.cloud.lexmark.com</code></li>
+<li><strong>Common Name (CN)</strong>: <code>*.cloud.enterprise.com</code></li>
 <li><strong>Validity</strong>: Expires December 2026</li>
 <li><strong>Resolved IPs</strong>: <code>32.184.176.197</code> and <code>44.230.127.219</code></li>
 </ul>
