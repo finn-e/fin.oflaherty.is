@@ -1,5 +1,5 @@
 baseURL = 'https://fin.oflaherty.is'
-languageCode = 'en-us'
+locale = 'en-us'
 title = "fin.oflaherty.is | Site Reliability Engineer"
 theme = "minimal-black"
 
@@ -99,9 +99,13 @@ theme = "minimal-black"
       label = "GitLab"
       icon = "devicon-gitlab-plain"
 
+    [[params.home.tech]]
+      label = "OpenEBS"
+      icon = "images/openebs.svg"
+
     [[params.home.techReverse]]
       label = "Ceph"
-      icon = "devicon-ceph-plain"
+      icon = "images/ceph.svg"
 
     [[params.home.techReverse]]
       label = "Docker"
