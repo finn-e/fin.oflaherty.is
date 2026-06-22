@@ -2,7 +2,7 @@
 
 This project is a Hugo-based portfolio website for **Fin o'Flaherty**, a Site Reliability Engineer III. It uses the **Hugo Minimal Black** theme, a minimal, dark-mode first design centered around developer experience, minimalism, and visual excellence.
 
-## Site Structure
+## Site Structure 
 
 - **`hugo.toml`**: Global configuration file containing website metadata, hero details, social profiles, navigation menus, and the technology marquee definitions.
 - **`content/`**: Markdown files containing pages, projects, and posts:
