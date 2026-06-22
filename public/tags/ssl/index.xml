@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
-		<title>Ssl on Fin o&#39;Flaherty | Site Reliability Engineer</title>
+		<title>Ssl on fin.oflaherty.is | Site Reliability Engineer</title>
 		<link>https://fin.oflaherty.is/tags/ssl/</link>
-		<description>Recent content in Ssl on Fin o&#39;Flaherty | Site Reliability Engineer</description>
+		<description>Recent content in Ssl on fin.oflaherty.is | Site Reliability Engineer</description>
 		<generator>Hugo</generator>
 		<language>en-us</language>
 		
 		
 		
 		
-			<lastBuildDate>Sun, 21 Jun 2026 00:00:00 +0000</lastBuildDate>
+			<lastBuildDate>Mon, 15 Jun 2026 00:00:00 +0000</lastBuildDate>
 		
 			<atom:link href="https://fin.oflaherty.is/tags/ssl/index.xml" rel="self" type="application/rss+xml" />
 			<item>
 				<title>Diagnosing Split-Horizon DNS &amp; SSL Certificate Mismatches</title>
 				<link>https://fin.oflaherty.is/blog/ssl-mismatch-domain-resolution/</link>
-				<pubDate>Sun, 21 Jun 2026 00:00:00 +0000</pubDate>
+				<pubDate>Mon, 15 Jun 2026 00:00:00 +0000</pubDate>
 				<guid>https://fin.oflaherty.is/blog/ssl-mismatch-domain-resolution/</guid>
 				<description>&lt;h2 id=&#34;the-symptom&#34;&gt;&#xA;  &lt;a href=&#34;#the-symptom&#34; class=&#34;md-heading-anchor&#34;&gt;&#xA;    The Symptom&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;Internal monitoring agents and collectors (specifically &lt;strong&gt;LogicMonitor&lt;/strong&gt;) began throwing alerts indicating that the staging environment endpoint &lt;code&gt;stage-api.cloud.enterprise.com&lt;/code&gt; was serving an invalid/expired SSL certificate.&lt;/p&gt;&#xA;&lt;p&gt;Curiously, developers accessing the staging site from their home connections reported no SSL warnings—the site loaded cleanly with a valid certificate expiring in December 2026.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;technical-auditing--dns-resolution&#34;&gt;&#xA;  &lt;a href=&#34;#technical-auditing--dns-resolution&#34; class=&#34;md-heading-anchor&#34;&gt;&#xA;    Technical Auditing &amp;amp; DNS Resolution&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;To diagnose this behavior, we had to isolate what certificate was being served, to whom, and by which server.&lt;/p&gt;</description>
 			</item>

@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
-		<title>Categories on Fin o&#39;Flaherty | Site Reliability Engineer</title>
+		<title>Categories on fin.oflaherty.is | Site Reliability Engineer</title>
 		<link>https://fin.oflaherty.is/categories/</link>
-		<description>Recent content in Categories on Fin o&#39;Flaherty | Site Reliability Engineer</description>
+		<description>Recent content in Categories on fin.oflaherty.is | Site Reliability Engineer</description>
 		<generator>Hugo</generator>
 		<language>en-us</language>
 		
 		
 		
 		
-			<lastBuildDate>Sun, 21 Jun 2026 00:00:00 +0000</lastBuildDate>
+			<lastBuildDate>Mon, 15 Jun 2026 00:00:00 +0000</lastBuildDate>
 		
 			<atom:link href="https://fin.oflaherty.is/categories/index.xml" rel="self" type="application/rss+xml" />
 			<item>
 				<title>Debugging</title>
 				<link>https://fin.oflaherty.is/categories/debugging/</link>
-				<pubDate>Sun, 21 Jun 2026 00:00:00 +0000</pubDate>
+				<pubDate>Mon, 15 Jun 2026 00:00:00 +0000</pubDate>
 				<guid>https://fin.oflaherty.is/categories/debugging/</guid>
 				<description></description>
 			</item>

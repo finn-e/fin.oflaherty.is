@@ -1,6 +1,6 @@
 +++
 title = "Diagnosing Split-Horizon DNS & SSL Certificate Mismatches"
-date = "2026-06-21"
+date = "2026-06-15"
 description = "Troubleshooting certificate mismatch errors in internal staging networks due to stale DNS views and load balancer caches."
 tags = ["dns", "ssl", "networking", "troubleshooting", "load-balancing"]
 categories = ["debugging"]

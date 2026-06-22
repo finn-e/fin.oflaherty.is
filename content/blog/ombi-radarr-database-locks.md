@@ -1,6 +1,6 @@
 +++
 title = "Solving SQLite Database Locks & Schema Contention in Ombi"
-date = "2026-06-21"
+date = "2026-06-13"
 description = "Investigating SQLite Error 5: 'database is locked' and API key injection race conditions in a containerized media stack."
 tags = ["sqlite", "debugging", "kubernetes", "database", "python"]
 categories = ["debugging"]

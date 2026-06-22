@@ -1,6 +1,6 @@
 baseURL = 'https://fin.oflaherty.is'
 languageCode = 'en-us'
-title = "Fin o'Flaherty | Site Reliability Engineer"
+title = "fin.oflaherty.is | Site Reliability Engineer"
 theme = "minimal-black"
 
 # Enable search index generation and web app manifest
@@ -15,13 +15,13 @@ theme = "minimal-black"
   notAlternative = true
 
 [params]
-  brand = "Fin o'Flaherty"
+  brand = "fin.oflaherty.is"
   description = "Personal portfolio of Fin o'Flaherty, a Site Reliability Engineer III specializing in Kubernetes, GitOps, multi-cloud automation, and low-power systems."
 
   # Favicon - Place your favicon files in /static/ directory
   # Supported formats: .ico, .png, .svg
-  favicon = "icons/favicon.svg"
-  appleTouchIcon = "apple-touch-icon.png"
+  favicon = "images/logo.png"
+  appleTouchIcon = "images/logo.png"
 
   # Logo (optional)
   logo = "images/logo.png"
@@ -61,7 +61,7 @@ theme = "minimal-black"
 
     [[params.home.tech]]
       label = "Talos OS"
-      icon = "devicon-linux-plain"
+      icon = "devicon-talos-plain"
 
     [[params.home.tech]]
       label = "OpenTofu"
@@ -87,9 +87,21 @@ theme = "minimal-black"
       label = "Grafana"
       icon = "devicon-grafana-plain"
 
+    [[params.home.tech]]
+      label = "Helm"
+      icon = "devicon-helm-original"
+
+    [[params.home.tech]]
+      label = "Go"
+      icon = "devicon-go-plain"
+
+    [[params.home.tech]]
+      label = "GitLab"
+      icon = "devicon-gitlab-plain"
+
     [[params.home.techReverse]]
-      label = "Rook/Ceph"
-      icon = "devicon-linux-plain"
+      label = "Ceph"
+      icon = "devicon-ceph-plain"
 
     [[params.home.techReverse]]
       label = "Docker"
@@ -102,6 +114,10 @@ theme = "minimal-black"
     [[params.home.techReverse]]
       label = "MSSQL"
       icon = "devicon-microsoftsqlserver-plain"
+
+    [[params.home.techReverse]]
+      label = "SQLite"
+      icon = "devicon-sqlite-plain"
 
     [[params.home.techReverse]]
       label = "Git"
@@ -120,12 +136,24 @@ theme = "minimal-black"
       icon = "devicon-python-plain"
 
     [[params.home.techReverse]]
+      label = "Django"
+      icon = "devicon-django-plain"
+
+    [[params.home.techReverse]]
+      label = "Vue.js"
+      icon = "devicon-vuejs-plain"
+
+    [[params.home.techReverse]]
       label = "PowerShell"
       icon = "devicon-powershell-plain"
 
     [[params.home.techReverse]]
       label = "Linux"
       icon = "devicon-linux-plain"
+
+    [[params.home.techReverse]]
+      label = "Arch Linux"
+      icon = "devicon-archlinux-plain"
 
   # About Page Alternative Layout Configuration - Optional
   [params.about.alt]
@@ -149,7 +177,7 @@ theme = "minimal-black"
 
     [[params.about.alt.skills]]
       label = "Talos OS"
-      icon = "devicon-linux-plain"
+      icon = "devicon-talos-plain"
 
     [[params.about.alt.skills]]
       label = "OpenTofu"
@@ -181,7 +209,7 @@ theme = "minimal-black"
     title = "Hi, I'm Fin o'Flaherty."
     role = "Designing, automating, and scaling high-availability systems"
     summary = "Site Reliability Engineer with a decade of experience designing and automating cloud-native, containerized, and bare-metal infrastructure. Expert in AWS, Azure, Talos OS, GitOps workflows, and system optimization."
-    avatar = "images/avatar.png"  # Optional: 400x400px recommended
+    avatar = "images/avatar.jpg"  # Optional: 400x400px recommended
     location = "Kentucky, USA"
     focus = "Focused on GitOps, Kubernetes platforms, and custom automation tooling."
     available = true

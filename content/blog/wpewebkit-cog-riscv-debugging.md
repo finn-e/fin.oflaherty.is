@@ -1,6 +1,6 @@
 +++
 title = "Debugging WPE WebKit & Cog Startup Hangs on RISC-V"
-date = "2026-06-21"
+date = "2026-06-10"
 description = "A forensic analysis of threading and synchronization loops in WPE WebKit on the Allwinner D1 RISC-V SoC."
 tags = ["risc-v", "webkit", "debugging", "linux", "embedded"]
 categories = ["debugging"]

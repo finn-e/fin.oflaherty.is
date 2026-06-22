@@ -5,37 +5,10 @@
     <loc>https://fin.oflaherty.is/</loc>
     <lastmod>2026-06-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://fin.oflaherty.is/blog/</loc>
-    <lastmod>2026-06-21T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://fin.oflaherty.is/projects/</loc>
     <lastmod>2026-06-21T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://fin.oflaherty.is/projects/kubernetes-overhaul/</loc>
-    <lastmod>2026-06-21T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://fin.oflaherty.is/categories/</loc>
-    <lastmod>2026-06-21T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://fin.oflaherty.is/tags/database/</loc>
-    <lastmod>2026-06-21T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://fin.oflaherty.is/categories/debugging/</loc>
-    <lastmod>2026-06-21T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://fin.oflaherty.is/tags/debugging/</loc>
-    <lastmod>2026-06-21T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://fin.oflaherty.is/blog/wpewebkit-cog-riscv-debugging/</loc>
-    <lastmod>2026-06-21T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://fin.oflaherty.is/blog/ssl-mismatch-domain-resolution/</loc>
-    <lastmod>2026-06-21T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://fin.oflaherty.is/tags/dns/</loc>
-    <lastmod>2026-06-21T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://fin.oflaherty.is/tags/embedded/</loc>
     <lastmod>2026-06-21T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://fin.oflaherty.is/projects/enterprise-stage-opentofu/</loc>
@@ -44,22 +17,10 @@
     <loc>https://fin.oflaherty.is/projects/geological-databases/</loc>
     <lastmod>2026-06-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://fin.oflaherty.is/tags/kubernetes/</loc>
-    <lastmod>2026-06-21T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://fin.oflaherty.is/tags/linux/</loc>
-    <lastmod>2026-06-21T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://fin.oflaherty.is/tags/load-balancing/</loc>
-    <lastmod>2026-06-21T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://fin.oflaherty.is/projects/mango-ha-kiosk/</loc>
     <lastmod>2026-06-21T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://fin.oflaherty.is/projects/mimisbrunnr-home-server/</loc>
-    <lastmod>2026-06-21T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://fin.oflaherty.is/tags/networking/</loc>
     <lastmod>2026-06-21T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://fin.oflaherty.is/projects/open-scad-corner-bracket/</loc>
@@ -68,29 +29,68 @@
     <loc>https://fin.oflaherty.is/projects/picframes-epaper-controller/</loc>
     <lastmod>2026-06-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://fin.oflaherty.is/tags/python/</loc>
-    <lastmod>2026-06-21T00:00:00+00:00</lastmod>
+    <loc>https://fin.oflaherty.is/blog/</loc>
+    <lastmod>2026-06-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://fin.oflaherty.is/tags/risc-v/</loc>
-    <lastmod>2026-06-21T00:00:00+00:00</lastmod>
+    <loc>https://fin.oflaherty.is/categories/</loc>
+    <lastmod>2026-06-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://fin.oflaherty.is/blog/ombi-radarr-database-locks/</loc>
-    <lastmod>2026-06-21T00:00:00+00:00</lastmod>
+    <loc>https://fin.oflaherty.is/categories/debugging/</loc>
+    <lastmod>2026-06-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://fin.oflaherty.is/tags/sqlite/</loc>
-    <lastmod>2026-06-21T00:00:00+00:00</lastmod>
+    <loc>https://fin.oflaherty.is/blog/ssl-mismatch-domain-resolution/</loc>
+    <lastmod>2026-06-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://fin.oflaherty.is/tags/dns/</loc>
+    <lastmod>2026-06-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://fin.oflaherty.is/tags/load-balancing/</loc>
+    <lastmod>2026-06-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://fin.oflaherty.is/tags/networking/</loc>
+    <lastmod>2026-06-15T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://fin.oflaherty.is/tags/ssl/</loc>
-    <lastmod>2026-06-21T00:00:00+00:00</lastmod>
+    <lastmod>2026-06-15T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://fin.oflaherty.is/tags/</loc>
-    <lastmod>2026-06-21T00:00:00+00:00</lastmod>
+    <lastmod>2026-06-15T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://fin.oflaherty.is/tags/troubleshooting/</loc>
-    <lastmod>2026-06-21T00:00:00+00:00</lastmod>
+    <lastmod>2026-06-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://fin.oflaherty.is/tags/database/</loc>
+    <lastmod>2026-06-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://fin.oflaherty.is/tags/debugging/</loc>
+    <lastmod>2026-06-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://fin.oflaherty.is/tags/kubernetes/</loc>
+    <lastmod>2026-06-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://fin.oflaherty.is/tags/python/</loc>
+    <lastmod>2026-06-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://fin.oflaherty.is/blog/ombi-radarr-database-locks/</loc>
+    <lastmod>2026-06-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://fin.oflaherty.is/tags/sqlite/</loc>
+    <lastmod>2026-06-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://fin.oflaherty.is/blog/wpewebkit-cog-riscv-debugging/</loc>
+    <lastmod>2026-06-10T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://fin.oflaherty.is/tags/embedded/</loc>
+    <lastmod>2026-06-10T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://fin.oflaherty.is/tags/linux/</loc>
+    <lastmod>2026-06-10T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://fin.oflaherty.is/tags/risc-v/</loc>
+    <lastmod>2026-06-10T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://fin.oflaherty.is/tags/webkit/</loc>
-    <lastmod>2026-06-21T00:00:00+00:00</lastmod>
+    <lastmod>2026-06-10T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://fin.oflaherty.is/blog/theme-guide/</loc>
     <lastmod>2025-01-15T00:00:00+00:00</lastmod>

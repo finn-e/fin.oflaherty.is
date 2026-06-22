@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
-		<title>Risc-V on Fin o&#39;Flaherty | Site Reliability Engineer</title>
+		<title>Risc-V on fin.oflaherty.is | Site Reliability Engineer</title>
 		<link>https://fin.oflaherty.is/tags/risc-v/</link>
-		<description>Recent content in Risc-V on Fin o&#39;Flaherty | Site Reliability Engineer</description>
+		<description>Recent content in Risc-V on fin.oflaherty.is | Site Reliability Engineer</description>
 		<generator>Hugo</generator>
 		<language>en-us</language>
 		
 		
 		
 		
-			<lastBuildDate>Sun, 21 Jun 2026 00:00:00 +0000</lastBuildDate>
+			<lastBuildDate>Wed, 10 Jun 2026 00:00:00 +0000</lastBuildDate>
 		
 			<atom:link href="https://fin.oflaherty.is/tags/risc-v/index.xml" rel="self" type="application/rss+xml" />
 			<item>
 				<title>Debugging WPE WebKit &amp; Cog Startup Hangs on RISC-V</title>
 				<link>https://fin.oflaherty.is/blog/wpewebkit-cog-riscv-debugging/</link>
-				<pubDate>Sun, 21 Jun 2026 00:00:00 +0000</pubDate>
+				<pubDate>Wed, 10 Jun 2026 00:00:00 +0000</pubDate>
 				<guid>https://fin.oflaherty.is/blog/wpewebkit-cog-riscv-debugging/</guid>
 				<description>&lt;h2 id=&#34;the-symptom&#34;&gt;&#xA;  &lt;a href=&#34;#the-symptom&#34; class=&#34;md-heading-anchor&#34;&gt;&#xA;    The Symptom&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;When building a lightweight Home Assistant touchscreen kiosk using a &lt;strong&gt;Mango Pi MQ Pro&lt;/strong&gt; (Allwinner D1 RISC-V SoC), I opted to bypass a heavy desktop environment. Instead, I ran a bare-metal Wayland compositor (&lt;strong&gt;Cage&lt;/strong&gt;) and the lightweight WPE WebKit browser engine launcher (&lt;strong&gt;Cog&lt;/strong&gt;).&lt;/p&gt;&#xA;&lt;p&gt;However, during boot initialization, the browser would launch a blank window and hang indefinitely, never attempting to resolve or load the target Home Assistant URL.&lt;/p&gt;</description>
 			</item>
