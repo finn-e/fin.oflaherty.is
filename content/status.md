@@ -73,7 +73,11 @@ description = "Live status of homelab services running on the Mimisbrunnr cluste
 
 <script>
 (function () {
-  var STATUS_URL = '/status.json';
+  // Primary: GitHub raw — always current, since a cluster CronJob pushes
+  // status.json to the repo every 30 min but site deploys are manual.
+  // Fallback: the copy bundled with the last deploy.
+  var STATUS_URL = 'https://raw.githubusercontent.com/finn-e/fin.oflaherty.is/trunk/static/status.json';
+  var FALLBACK_URL = '/status.json';
   var STALE_HOURS = 2;
   var root = document.getElementById('status-root');
 
@@ -133,11 +137,15 @@ description = "Live status of homelab services running on the Mimisbrunnr cluste
       .replace(/"/g, '&quot;');
   }
 
-  fetch(STATUS_URL)
-    .then(function (res) {
+  function load(url) {
+    return fetch(url).then(function (res) {
       if (!res.ok) throw new Error('HTTP ' + res.status);
       return res.json();
-    })
+    });
+  }
+
+  load(STATUS_URL)
+    .catch(function () { return load(FALLBACK_URL); })
     .then(render)
     .catch(function (err) {
       showOffline('could not load status.json');

@@ -86,7 +86,11 @@
 &lt;/style&gt;
 &lt;script&gt;
 (function () {
- var STATUS_URL = '/status.json';
+ // Primary: GitHub raw — always current, since a cluster CronJob pushes
+ // status.json to the repo every 30 min but site deploys are manual.
+ // Fallback: the copy bundled with the last deploy.
+ var STATUS_URL = 'https://raw.githubusercontent.com/finn-e/fin.oflaherty.is/trunk/static/status.json';
+ var FALLBACK_URL = '/status.json';
  var STALE_HOURS = 2;
  var root = document.getElementById('status-root');
 
