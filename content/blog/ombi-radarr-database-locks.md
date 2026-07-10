@@ -65,3 +65,7 @@ To resolve the issue, I refactored the key injector script and updated the datab
    Updated the configuration to point to real system storage paths (`/media/Movies` for Radarr, `/media/TVShows` for Sonarr).
 
 After rolling out the updated sidecar configurations, the database locks cleared instantly, and all queued movie requests synced to Radarr successfully.
+
+---
+
+This media stack runs as part of the [Mimisbrunnr home server cluster](/projects/mimisbrunnr-home-server/).

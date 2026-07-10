@@ -59,3 +59,9 @@ During setup, the Cog browser would regularly hang during initialization. Forens
 
 - **Root Cause**: The WebKit `ResolveDirectories` thread (`TID 9364`) was spinning in a tight loop at ~38% CPU, while the main browser thread slept in a `futex_wait`. 
 - **Investigation**: Bypassed JIT (`JavaScriptCoreUseJIT=0`), sandboxing, and redirected XDG data directories to verify it was not disk IO bottlenecks. The behavior points directly to a low-level **threading or atomic synchronization bug** in WPE WebKit's RISC-V implementation, looping indefinitely on the T-Head C906 core. Work is ongoing to patch the atomic locks in WebKit's build.
+
+---
+
+## Related
+
+- [Debugging WPE WebKit & Cog Startup Hangs on RISC-V](/blog/wpewebkit-cog-riscv-debugging/) — the full forensic write-up of the threading hang described above.

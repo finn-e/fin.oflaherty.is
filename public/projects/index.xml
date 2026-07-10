@@ -1,66 +1,469 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-	<channel>
-		<title>fin.oflaherty.is | Site Reliability Engineer</title>
-		<link>https://fin.oflaherty.is/projects/</link>
-		<description>Recent content on fin.oflaherty.is | Site Reliability Engineer</description>
-		<generator>Hugo</generator>
-		<language>en-us</language>
-		
-		
-		
-		
-			<lastBuildDate>Sun, 21 Jun 2026 00:00:00 +0000</lastBuildDate>
-		
-			<atom:link href="https://fin.oflaherty.is/projects/index.xml" rel="self" type="application/rss+xml" />
-			<item>
-				<title>Bare-Metal Kubernetes Overhaul</title>
-				<link>https://fin.oflaherty.is/projects/kubernetes-overhaul/</link>
-				<pubDate>Sun, 21 Jun 2026 00:00:00 +0000</pubDate>
-				<guid>https://fin.oflaherty.is/projects/kubernetes-overhaul/</guid>
-				<description>&lt;h2 id=&#34;overview&#34;&gt;&#xA;  &lt;a href=&#34;#overview&#34; class=&#34;md-heading-anchor&#34;&gt;&#xA;    Overview&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;At a &lt;strong&gt;State Geological Research Institute&lt;/strong&gt;, the legacy server infrastructure supporting geological research, web APIs, and data indexing tools was aging and prone to configuration drift.&lt;/p&gt;&#xA;&lt;p&gt;To resolve these challenges, I designed and implemented an &lt;strong&gt;18-node bare-metal Kubernetes cluster&lt;/strong&gt; driven by &lt;strong&gt;Talos OS&lt;/strong&gt; and automated entirely via declarative GitOps pipelines, achieving &lt;strong&gt;99.99% uptime&lt;/strong&gt; for mission-critical geological research tools.&lt;/p&gt;&#xA;&lt;div class=&#34;md-mermaid&#34;&gt;&#xA;  &lt;pre class=&#34;mermaid&#34;&gt;&#xA;graph TD&#xA;    subgraph 18-Node Bare-Metal Cluster&#xA;        subgraph Control Plane&#xA;            CP1[Master 1]&#xA;            CP2[Master 2]&#xA;            CP3[Master 3]&#xA;        end&#xA;        subgraph Workers&#xA;            W1[Worker 1]&#xA;            W2[Worker 2]&#xA;            W_Rest[...]&#xA;            W18[Worker 18]&#xA;        end&#xA;        subgraph Storage Tier&#xA;            Rook[Rook/Ceph Grid]&#xA;        end&#xA;    end&#xA;    &#xA;    subgraph GitOps Pipeline&#xA;        Repo[Git Repository] --&gt;|Commit| GHA[GitHub Actions]&#xA;        GHA --&gt;|Trigger| OpenTofu[OpenTofu / Ansible]&#xA;        OpenTofu --&gt;|Apply| Control+Workers&#xA;    end&#xA;    &#xA;    Workers --&gt; Rook&#xA;  &lt;/pre&gt;&#xA;&lt;/div&gt;&#xA;&lt;h2 id=&#34;infrastructure-engineering&#34;&gt;&#xA;  &lt;a href=&#34;#infrastructure-engineering&#34; class=&#34;md-heading-anchor&#34;&gt;&#xA;    Infrastructure Engineering&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;h3 id=&#34;1-os--network-configuration&#34;&gt;&#xA;  &lt;a href=&#34;#1-os--network-configuration&#34; class=&#34;md-heading-anchor&#34;&gt;&#xA;    1. OS &amp;amp; Network Configuration&#xA;  &lt;/a&gt;&#xA;&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Operating System&lt;/strong&gt;: Selected &lt;strong&gt;Talos OS&lt;/strong&gt; for its secure, immutable, API-managed design. Because Talos has no SSH or terminal package managers, configuration drift is eliminated at the OS layer.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Networking&lt;/strong&gt;: Configured &lt;strong&gt;Flannel&lt;/strong&gt; as the internal pod network fabric and &lt;strong&gt;Traefik Ingress&lt;/strong&gt; for secure external entry routing.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;2-distributed-rookceph-storage&#34;&gt;&#xA;  &lt;a href=&#34;#2-distributed-rookceph-storage&#34; class=&#34;md-heading-anchor&#34;&gt;&#xA;    2. Distributed Rook/Ceph Storage&#xA;  &lt;/a&gt;&#xA;&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Managed high-performance persistent storage by running &lt;strong&gt;Rook/Ceph&lt;/strong&gt; directly on bare-metal worker nodes.&lt;/li&gt;&#xA;&lt;li&gt;Consolidated local SSD storage into a unified Ceph storage pool, providing dynamic, highly available volume provisioning for over &lt;strong&gt;50 database instances&lt;/strong&gt; and &lt;strong&gt;20 virtual machines&lt;/strong&gt;.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;3-gitops-automation--secrets-management&#34;&gt;&#xA;  &lt;a href=&#34;#3-gitops-automation--secrets-management&#34; class=&#34;md-heading-anchor&#34;&gt;&#xA;    3. GitOps Automation &amp;amp; Secrets Management&#xA;  &lt;/a&gt;&#xA;&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Built a unified GitOps deployment pipeline using &lt;strong&gt;OpenTofu&lt;/strong&gt;, &lt;strong&gt;Ansible&lt;/strong&gt;, &lt;strong&gt;Helm&lt;/strong&gt;, and &lt;strong&gt;GitHub Actions&lt;/strong&gt;. This setup reduced application deployment errors by &lt;strong&gt;75%&lt;/strong&gt; and accelerated feature delivery by &lt;strong&gt;40%&lt;/strong&gt;.&lt;/li&gt;&#xA;&lt;li&gt;Integrated &lt;strong&gt;HashiCorp Vault&lt;/strong&gt; and &lt;strong&gt;Bitwarden Secrets Manager&lt;/strong&gt; into the deployment pipelines to prevent plaintext secrets from entering the version control systems.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;4-enterprise-observability--disaster-recovery&#34;&gt;&#xA;  &lt;a href=&#34;#4-enterprise-observability--disaster-recovery&#34; class=&#34;md-heading-anchor&#34;&gt;&#xA;    4. Enterprise Observability &amp;amp; Disaster Recovery&#xA;  &lt;/a&gt;&#xA;&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Designed a unified observability stack integrating &lt;strong&gt;Prometheus&lt;/strong&gt;, &lt;strong&gt;Grafana&lt;/strong&gt;, and &lt;strong&gt;Loki&lt;/strong&gt; to aggregate logs and metrics from both Linux nodes and active Windows Server virtual machines.&lt;/li&gt;&#xA;&lt;li&gt;Authored a comprehensive disaster recovery plan, guaranteeing a &lt;strong&gt;30-minute Recovery Time Objective (RTO)&lt;/strong&gt; across core geological endpoints.&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
-			</item>
-			<item>
-				<title>Enterprise Staging &amp; OpenTofu Codification</title>
-				<link>https://fin.oflaherty.is/projects/enterprise-stage-opentofu/</link>
-				<pubDate>Sun, 21 Jun 2026 00:00:00 +0000</pubDate>
-				<guid>https://fin.oflaherty.is/projects/enterprise-stage-opentofu/</guid>
-				<description>&lt;h2 id=&#34;overview&#34;&gt;&#xA;  &lt;a href=&#34;#overview&#34; class=&#34;md-heading-anchor&#34;&gt;&#xA;    Overview&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;This project focuses on the automation of hosted customer environments on AWS and the resolution of staging domain connectivity bottlenecks.&lt;/p&gt;&#xA;&lt;p&gt;It implements modular &lt;strong&gt;OpenTofu&lt;/strong&gt; configurations to provision isolated multi-tier networks, alongside automated Active Directory (AD) domain migration workflows driven by PowerShell scripting and AWS Systems Manager (SSM) Run Commands.&lt;/p&gt;&#xA;&lt;div class=&#34;md-mermaid&#34;&gt;&#xA;  &lt;pre class=&#34;mermaid&#34;&gt;&#xA;graph TD&#xA;    subgraph AWS Cloud&#xA;        subgraph Customer VPC&#xA;            ALB[Sticky Session ALB]&#xA;            &#xA;            subgraph App Tier&#xA;                Prod1[App Server 1]&#xA;                Prod2[App Server 2]&#xA;                Stage[Staging Server]&#xA;            end&#xA;            &#xA;            subgraph Storage Tier&#xA;                FSx[FSx Windows File Share]&#xA;            end&#xA;        end&#xA;        &#xA;        subgraph Core Shared Services&#xA;            AD[Active Directory Controller]&#xA;            SQL_Test[(Test SQL Server)]&#xA;            SQL_Prod[(Prod SQL Server)]&#xA;        end&#xA;        &#xA;        ALB --&gt; Prod1 &amp; Prod2&#xA;        Prod1 &amp; Prod2 --&gt; SQL_Prod&#xA;        Stage --&gt; SQL_Test&#xA;        Prod1 &amp; Prod2 &amp; Stage --&gt; FSx&#xA;        Prod1 &amp; Prod2 &amp; Stage --&gt;|Domain Join| AD&#xA;    end&#xA;  &lt;/pre&gt;&#xA;&lt;/div&gt;&#xA;&lt;h2 id=&#34;codified-infrastructure-architecture&#34;&gt;&#xA;  &lt;a href=&#34;#codified-infrastructure-architecture&#34; class=&#34;md-heading-anchor&#34;&gt;&#xA;    Codified Infrastructure Architecture&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;The environments are split into two execution stages:&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>Geological Data Platforms</title>
-				<link>https://fin.oflaherty.is/projects/geological-databases/</link>
-				<pubDate>Sun, 21 Jun 2026 00:00:00 +0000</pubDate>
-				<guid>https://fin.oflaherty.is/projects/geological-databases/</guid>
-				<description>&lt;h2 id=&#34;overview&#34;&gt;&#xA;  &lt;a href=&#34;#overview&#34; class=&#34;md-heading-anchor&#34;&gt;&#xA;    Overview&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;During my tenure at a &lt;strong&gt;State Geological Research Institute&lt;/strong&gt;, I engineered multiple web applications and APIs designed to make millions of geological data points, microscopic thin sections, and archives accessible to researchers and the public.&lt;/p&gt;&#xA;&lt;p&gt;These initiatives included rebuilding the &lt;strong&gt;Thin Sections Database&lt;/strong&gt; and creating the &lt;strong&gt;Data Preservation Initiative Discovery Portal&lt;/strong&gt;.&lt;/p&gt;&#xA;&lt;div class=&#34;md-mermaid&#34;&gt;&#xA;  &lt;pre class=&#34;mermaid&#34;&gt;&#xA;graph TD&#xA;    subgraph Data Preservation Portal&#xA;        Client_Pres[Vue.js Web Client] --&gt;|Full-Text Query| Django[Django API Engine]&#xA;        Django --&gt;|Index Query| ES[Full-Text Search Index]&#xA;        Django --&gt;|Ingest Pipeline| Ingest[Worker Queue: 1,000 docs/hr]&#xA;    end&#xA;    &#xA;    subgraph Thin Sections Portal&#xA;        Client_Thin[Vue.js UI + Caching] --&gt;|REST API| Flask[Flask API Server]&#xA;        Flask --&gt;|Cache Check| Redis[Redis Caching Layer]&#xA;        Flask --&gt;|Query| DB[(Geological SQL Database)]&#xA;    end&#xA;  &lt;/pre&gt;&#xA;&lt;/div&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;1-thin-sections-database-api-and-frontend&#34;&gt;&#xA;  &lt;a href=&#34;#1-thin-sections-database-api-and-frontend&#34; class=&#34;md-heading-anchor&#34;&gt;&#xA;    1. Thin Sections Database, API, and Frontend&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;h3 id=&#34;the-challenge&#34;&gt;&#xA;  &lt;a href=&#34;#the-challenge&#34; class=&#34;md-heading-anchor&#34;&gt;&#xA;    The Challenge&#xA;  &lt;/a&gt;&#xA;&lt;/h3&gt;&#xA;&lt;p&gt;Geologists require rapid access to high-resolution scans of rock thin sections (microscopic geological samples). The legacy system suffered from sluggish query processing and was unable to scale as user traffic increased.&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>Mango HA Touchscreen Kiosk</title>
-				<link>https://fin.oflaherty.is/projects/mango-ha-kiosk/</link>
-				<pubDate>Sun, 21 Jun 2026 00:00:00 +0000</pubDate>
-				<guid>https://fin.oflaherty.is/projects/mango-ha-kiosk/</guid>
-				<description>&lt;h2 id=&#34;overview&#34;&gt;&#xA;  &lt;a href=&#34;#overview&#34; class=&#34;md-heading-anchor&#34;&gt;&#xA;    Overview&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;This project configures a dedicated, single-purpose Home Assistant kiosk on a &lt;strong&gt;Mango Pi MQ Pro&lt;/strong&gt;—a low-cost single-board computer powered by the &lt;strong&gt;Allwinner D1 RISC-V SoC&lt;/strong&gt; (single core, T-Head C906).&lt;/p&gt;&#xA;&lt;p&gt;To optimize performance and avoid memory starvation, the kiosk operates by running a minimal Wayland compositor (&lt;strong&gt;Cage&lt;/strong&gt;) and a lightweight WPE WebKit browser engine (&lt;strong&gt;Cog&lt;/strong&gt;), bypassing a heavy desktop environment.&lt;/p&gt;&#xA;&lt;div class=&#34;md-mermaid&#34;&gt;&#xA;  &lt;pre class=&#34;mermaid&#34;&gt;&#xA;graph LR&#xA;    subgraph Mango Pi MQ Pro&#xA;        Systemd[Systemd Service] --&gt; Cage[Cage Wayland Compositor]&#xA;        Cage --&gt; Cog[Cog / WPE WebKit]&#xA;        SW_Raster[Softpipe CPU Rasterizer] --&gt; Cog&#xA;    end&#xA;    subgraph Local Network&#xA;        Cog --&gt;|WebSockets| HA[Home Assistant Ingress]&#xA;    end&#xA;  &lt;/pre&gt;&#xA;&lt;/div&gt;&#xA;&lt;h2 id=&#34;system-constraints--solutions&#34;&gt;&#xA;  &lt;a href=&#34;#system-constraints--solutions&#34; class=&#34;md-heading-anchor&#34;&gt;&#xA;    System Constraints &amp;amp; Solutions&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;Running a modern WebKit browser on a single-core RISC-V SoC with 1GB RAM presents significant resource bottlenecks. The following software adjustments were implemented to stabilize the kiosk:&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>Mimisbrunnr Home Server Cluster</title>
-				<link>https://fin.oflaherty.is/projects/mimisbrunnr-home-server/</link>
-				<pubDate>Sun, 21 Jun 2026 00:00:00 +0000</pubDate>
-				<guid>https://fin.oflaherty.is/projects/mimisbrunnr-home-server/</guid>
-				<description>&lt;h2 id=&#34;overview&#34;&gt;&#xA;  &lt;a href=&#34;#overview&#34; class=&#34;md-heading-anchor&#34;&gt;&#xA;    Overview&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;&lt;strong&gt;Mimisbrunnr&lt;/strong&gt; is a secure, immutable, and fully automated bare-metal home server cluster. Built on top of &lt;strong&gt;Talos Linux&lt;/strong&gt;, a minimal Linux distribution designed specifically for running Kubernetes, the entire infrastructure and application stack is codified and provisioned using &lt;strong&gt;OpenTofu&lt;/strong&gt;.&lt;/p&gt;&#xA;&lt;div class=&#34;md-mermaid&#34;&gt;&#xA;  &lt;pre class=&#34;mermaid&#34;&gt;&#xA;graph TD&#xA;    subgraph Mimisbrunnr Cluster&#xA;        CP1[Control Plane 1]&#xA;        CP2[Control Plane 2]&#xA;        CP3[Control Plane 3]&#xA;        &#xA;        K8S[Kubernetes Core]&#xA;        CP1 &amp; CP2 &amp; CP3 --&gt; K8S&#xA;        &#xA;        subgraph Storage&#xA;            OpenEBS[OpenEBS LocalPV Hostpath]&#xA;            Rook[Rook/Ceph Block Storage]&#xA;        end&#xA;        &#xA;        subgraph Networking&#xA;            MetalLB[MetalLB VIP]&#xA;            Traefik[Traefik Ingress]&#xA;            AdGuard[AdGuard DNS]&#xA;        end&#xA;        &#xA;        subgraph Databases&#xA;            CNPG[(CloudNative-PG Postgres)]&#xA;            MinIO[(MinIO S3 Buckets)]&#xA;        end&#xA;        &#xA;        K8S --&gt; Storage&#xA;        K8S --&gt; Networking&#xA;        K8S --&gt; Databases&#xA;    end&#xA;  &lt;/pre&gt;&#xA;&lt;/div&gt;&#xA;&lt;h2 id=&#34;infrastructure-architecture&#34;&gt;&#xA;  &lt;a href=&#34;#infrastructure-architecture&#34; class=&#34;md-heading-anchor&#34;&gt;&#xA;    Infrastructure Architecture&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;h3 id=&#34;1-control-plane--networking&#34;&gt;&#xA;  &lt;a href=&#34;#1-control-plane--networking&#34; class=&#34;md-heading-anchor&#34;&gt;&#xA;    1. Control Plane &amp;amp; Networking&#xA;  &lt;/a&gt;&#xA;&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Nodes&lt;/strong&gt;: Three physical nodes with static IPs (&lt;code&gt;192.168.1.42&lt;/code&gt; - &lt;code&gt;192.168.1.44&lt;/code&gt;) configured as a multi-master control plane.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Load Balancing&lt;/strong&gt;: &lt;strong&gt;MetalLB&lt;/strong&gt; handles IP allocation on the local subnet (&lt;code&gt;192.168.1.80&lt;/code&gt; - &lt;code&gt;192.168.1.90&lt;/code&gt;).&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Ingress&lt;/strong&gt;: &lt;strong&gt;Traefik Ingress Controller&lt;/strong&gt; exposed on a shared VIP (&lt;code&gt;192.168.1.80&lt;/code&gt;) handles SSL termination and routing.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;DNS&lt;/strong&gt;: &lt;strong&gt;AdGuard Home&lt;/strong&gt; acts as the network-wide DNS server and DHCP authority, running with host networking.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;2-high-availability-database-layer&#34;&gt;&#xA;  &lt;a href=&#34;#2-high-availability-database-layer&#34; class=&#34;md-heading-anchor&#34;&gt;&#xA;    2. High-Availability Database Layer&#xA;  &lt;/a&gt;&#xA;&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;CloudNative-PG&lt;/strong&gt;: A Postgres operator manages highly-available clustered databases in a 3-instance primary/replica setup. Databases are provisioned for Authelia, Home Assistant, LLDAP, and Forgejo.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Backup Strategy&lt;/strong&gt;: Daily database backups are streamed using Barman to a local &lt;strong&gt;MinIO&lt;/strong&gt; S3 bucket, which replicates offsite.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;NFS backups&lt;/strong&gt;: Nightly cronjobs capture application config PVCs and copy them as timestamped tarballs to a QNAP NAS.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;3-identity--single-sign-on-sso&#34;&gt;&#xA;  &lt;a href=&#34;#3-identity--single-sign-on-sso&#34; class=&#34;md-heading-anchor&#34;&gt;&#xA;    3. Identity &amp;amp; Single Sign-On (SSO)&#xA;  &lt;/a&gt;&#xA;&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Directory Services&lt;/strong&gt;: &lt;strong&gt;LLDAP&lt;/strong&gt; acts as a lightweight LDAP directory service.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Auth Portal&lt;/strong&gt;: &lt;strong&gt;Authelia&lt;/strong&gt; provides modern Multi-Factor Authentication (MFA) and Single Sign-On (SSO) integration across the cluster services (routing via &lt;code&gt;auth.treee.house&lt;/code&gt;).&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;deployed-applications&#34;&gt;&#xA;  &lt;a href=&#34;#deployed-applications&#34; class=&#34;md-heading-anchor&#34;&gt;&#xA;    Deployed Applications&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Home Automation&lt;/strong&gt;: &lt;strong&gt;Home Assistant&lt;/strong&gt; runs with host networking for direct discovery of IoT devices.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Media Delivery&lt;/strong&gt;: &lt;strong&gt;Jellyfin&lt;/strong&gt; (media server), &lt;strong&gt;Navidrome&lt;/strong&gt; (music streaming via LDAP auth), and &lt;strong&gt;Kavita&lt;/strong&gt; (digital library).&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Automation Pipeline&lt;/strong&gt;: &lt;strong&gt;Sonarr&lt;/strong&gt;, &lt;strong&gt;Radarr&lt;/strong&gt;, &lt;strong&gt;Ombi&lt;/strong&gt;, and &lt;strong&gt;qBittorrent&lt;/strong&gt; (isolated with a secure NordVPN WireGuard sidecar to route traffic privately).&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;ESP32 Gateway&lt;/strong&gt;: &lt;strong&gt;PicFrames&lt;/strong&gt; slideshow gateway server (manages e-paper bitmap distribution and OTA firmware updates).&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
-			</item>
-			<item>
-				<title>Parametric 3D-Printable Corner Brackets</title>
-				<link>https://fin.oflaherty.is/projects/open-scad-corner-bracket/</link>
-				<pubDate>Sun, 21 Jun 2026 00:00:00 +0000</pubDate>
-				<guid>https://fin.oflaherty.is/projects/open-scad-corner-bracket/</guid>
-				<description>&lt;h2 id=&#34;overview&#34;&gt;&#xA;  &lt;a href=&#34;#overview&#34; class=&#34;md-heading-anchor&#34;&gt;&#xA;    Overview&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;This project defines a 3D-printable corner bracket designed in &lt;strong&gt;OpenSCAD&lt;/strong&gt; that holds three sheets of plexiglass meeting at right angles—forming the secure corner of a cube, enclosure, or display case.&lt;/p&gt;&#xA;&lt;p&gt;The design is fully &lt;strong&gt;parametric&lt;/strong&gt;: adjusting variables at the top of the file automatically re-calculates all slot widths, tolerances, wall thicknesses, and structural features for rendering and exporting to STL.&lt;/p&gt;&#xA;&lt;div class=&#34;md-mermaid&#34;&gt;&#xA;  &lt;pre class=&#34;mermaid&#34;&gt;&#xA;graph TD&#xA;    subgraph OpenSCAD Model&#xA;        Params[Parameters: thickness, depth, wall, tolerance]&#xA;        Params --&gt; Std[Symmetric Corner Bracket]&#xA;        Params --&gt; Tight[Tight Box Variant]&#xA;    end&#xA;    &#xA;    subgraph Features&#xA;        Std --&gt;|Symmetric Slots| Gap[Small convergence gap at core]&#xA;        Tight --&gt;|Pinwheel Cycle| Seamless[Seamless plexiglass interface]&#xA;    end&#xA;  &lt;/pre&gt;&#xA;&lt;/div&gt;&#xA;&lt;h2 id=&#34;key-parameters&#34;&gt;&#xA;  &lt;a href=&#34;#key-parameters&#34; class=&#34;md-heading-anchor&#34;&gt;&#xA;    Key Parameters&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;&#x9;&lt;thead&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;Parameter&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;Default&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;th&gt;Description&lt;/th&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&lt;/thead&gt;&#xA;&#x9;&lt;tbody&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;&lt;code&gt;plexi_thickness&lt;/code&gt;&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;&lt;code&gt;3 mm&lt;/code&gt;&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;Thickness of the plexiglass sheets&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;&lt;code&gt;slot_depth&lt;/code&gt;&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;&lt;code&gt;15 mm&lt;/code&gt;&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;How far each sheet slides into its slot&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;&lt;code&gt;wall&lt;/code&gt;&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;&lt;code&gt;4 mm&lt;/code&gt;&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;Solid material thickness surrounding the slots&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&#x9;&#x9;&lt;tr&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;&lt;code&gt;slot_tolerance&lt;/code&gt;&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;&lt;code&gt;0.2 mm&lt;/code&gt;&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&lt;td&gt;Extra clearance added to slot width to ensure slide-fit&lt;/td&gt;&#xA;&#x9;&#x9;&#x9;&lt;/tr&gt;&#xA;&#x9;&lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;design-variants&#34;&gt;&#xA;  &lt;a href=&#34;#design-variants&#34; class=&#34;md-heading-anchor&#34;&gt;&#xA;    Design Variants&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;h3 id=&#34;1-standard-symmetric-bracket&#34;&gt;&#xA;  &lt;a href=&#34;#1-standard-symmetric-bracket&#34; class=&#34;md-heading-anchor&#34;&gt;&#xA;    1. Standard Symmetric Bracket&#xA;  &lt;/a&gt;&#xA;&lt;/h3&gt;&#xA;&lt;p&gt;Provides three orthogonal slots (XY, XZ, YZ planes). The sheets slide in and meet at the center. This design is simple and prints easily, but leaves a tiny gap at the innermost convergence point of the three sheets.&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>PicFrames E-Paper Controller</title>
-				<link>https://fin.oflaherty.is/projects/picframes-epaper-controller/</link>
-				<pubDate>Sun, 21 Jun 2026 00:00:00 +0000</pubDate>
-				<guid>https://fin.oflaherty.is/projects/picframes-epaper-controller/</guid>
-				<description>&lt;h2 id=&#34;overview&#34;&gt;&#xA;  &lt;a href=&#34;#overview&#34; class=&#34;md-heading-anchor&#34;&gt;&#xA;    Overview&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;This project implements a distributed, battery-optimized e-paper slideshow system designed for a fleet of &lt;strong&gt;Waveshare ESP32-S3-PhotoPainter&lt;/strong&gt; frames (7.3″ 6-color Spectra e-paper displays).&lt;/p&gt;&#xA;&lt;p&gt;To maximize battery life and simplify client-side hardware, the system splits work between a central server (Flask backend running in Kubernetes) and a fleet of low-power ESP32-S3 MicroPython clients.&lt;/p&gt;&#xA;&lt;div class=&#34;md-mermaid&#34;&gt;&#xA;  &lt;pre class=&#34;mermaid&#34;&gt;&#xA;sequenceDiagram&#xA;    participant Frame as ESP32-S3 Frame&#xA;    participant Server as Flask Server&#xA;    &#xA;    Frame-&gt;&gt;Server: Wakeup (POST /api/wakeup + MAC)&#xA;    Note over Server: Check version, check assigned image&#xA;    alt Client needs files&#xA;        Server--&gt;&gt;Frame: REDOWNLOAD suffix&#xA;        Frame-&gt;&gt;Server: Get daily.zip (GET /api/daily-zip)&#xA;        Server--&gt;&gt;Frame: daily.zip (dithered 4bpp bin files + config)&#xA;        Note over Frame: Decompress to SD card&#xA;    end&#xA;    &#xA;    Server--&gt;&gt;Frame: WAIT - image.bin&#xA;    Note over Frame: Poll every 15s (GATHERING Phase)&#xA;    Server--&gt;&gt;Frame: READY - image.bin&#xA;    Note over Frame: Poll every 1s (READY Phase)&#xA;    Server--&gt;&gt;Frame: CHANGE - image.bin&#xA;    Note over Frame: Stream 4bpp bitstream to SPI&#xA;    Note over Frame: Command Deep Sleep (AXP2101 Rails Off)&#xA;  &lt;/pre&gt;&#xA;&lt;/div&gt;&#xA;&lt;h2 id=&#34;core-architecture&#34;&gt;&#xA;  &lt;a href=&#34;#core-architecture&#34; class=&#34;md-heading-anchor&#34;&gt;&#xA;    Core Architecture&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;h3 id=&#34;1-server-side-dithering--pre-processing&#34;&gt;&#xA;  &lt;a href=&#34;#1-server-side-dithering--pre-processing&#34; class=&#34;md-heading-anchor&#34;&gt;&#xA;    1. Server-Side Dithering &amp;amp; Pre-Processing&#xA;  &lt;/a&gt;&#xA;&lt;/h3&gt;&#xA;&lt;p&gt;Instead of wasting battery processing images on the ESP32-S3 CPU, a central Flask server performs all transformations:&lt;/p&gt;</description>
-			</item>
-	</channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>fin.oflaherty.is | Site Reliability Engineer</title><link>https://fin.oflaherty.is/projects/</link><description>Recent content on fin.oflaherty.is | Site Reliability Engineer</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Fri, 10 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://fin.oflaherty.is/projects/index.xml" rel="self" type="application/rss+xml"/><item><title>Mimisbrunnr: Cluster Architecture Deep-Dive</title><link>https://fin.oflaherty.is/projects/mimisbrunnr-architecture/</link><pubDate>Fri, 10 Jul 2026 00:00:00 +0000</pubDate><guid>https://fin.oflaherty.is/projects/mimisbrunnr-architecture/</guid><description>&lt;p&gt;This page is a deep-dive companion to the &lt;a
+ href="https://fin.oflaherty.is/projects/mimisbrunnr-home-server/"
+ 
+ class="md-link"
+&gt;
+ Mimisbrunnr home server project
+&lt;/a&gt;
+. While that page gives a high-level overview of what runs on the cluster, this one explains &lt;em&gt;how&lt;/em&gt; the pieces fit together — traffic routing, authentication, the database HA strategy, storage, and the backup pipeline. The full OpenTofu configuration is being prepared for public release at &lt;a
+ href="https://github.com/finn-e"
+ target="_blank" rel="noopener"
+ class="md-link"
+&gt;
+ github.com/finn-e
+&lt;/a&gt;
+ (portfolio_tofu repo).&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="overview"&gt;
+ &lt;a href="#overview" class="md-heading-anchor"&gt;
+ Overview
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Mimisbrunnr&lt;/strong&gt; is a three-node bare-metal Kubernetes cluster running on &lt;strong&gt;Talos Linux&lt;/strong&gt; — a minimal, immutable OS that exposes only a gRPC API surface; no SSH, no shell, no package manager. Every piece of cluster state is declared in OpenTofu and applied via the Kubernetes/Talos providers. There is no snowflake configuration and no configuration drift by construction.&lt;/p&gt;</description></item><item><title>Bare-Metal Kubernetes Overhaul</title><link>https://fin.oflaherty.is/projects/kubernetes-overhaul/</link><pubDate>Sun, 21 Jun 2026 00:00:00 +0000</pubDate><guid>https://fin.oflaherty.is/projects/kubernetes-overhaul/</guid><description>&lt;h2 id="overview"&gt;
+ &lt;a href="#overview" class="md-heading-anchor"&gt;
+ Overview
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;At a &lt;strong&gt;State Geological Research Institute&lt;/strong&gt;, the legacy server infrastructure supporting geological research, web APIs, and data indexing tools was aging and prone to configuration drift.&lt;/p&gt;
+&lt;p&gt;To resolve these challenges, I designed and implemented an &lt;strong&gt;18-node bare-metal Kubernetes cluster&lt;/strong&gt; driven by &lt;strong&gt;Talos OS&lt;/strong&gt; and automated entirely via declarative GitOps pipelines, achieving &lt;strong&gt;99.99% uptime&lt;/strong&gt; for mission-critical geological research tools.&lt;/p&gt;
+&lt;div class="md-mermaid"&gt;
+ &lt;pre class="mermaid"&gt;
+graph TD
+ subgraph 18-Node Bare-Metal Cluster
+ subgraph Control Plane
+ CP1[Master 1]
+ CP2[Master 2]
+ CP3[Master 3]
+ end
+ subgraph Workers
+ W1[Worker 1]
+ W2[Worker 2]
+ W_Rest[...]
+ W18[Worker 18]
+ end
+ subgraph Storage Tier
+ Rook[Rook/Ceph Grid]
+ end
+ end
+ 
+ subgraph GitOps Pipeline
+ Repo[Git Repository] --&gt;|Commit| GHA[GitHub Actions]
+ GHA --&gt;|Trigger| OpenTofu[OpenTofu / Ansible]
+ OpenTofu --&gt;|Apply| Control+Workers
+ end
+ 
+ Workers --&gt; Rook
+ &lt;/pre&gt;
+&lt;/div&gt;
+&lt;h2 id="infrastructure-engineering"&gt;
+ &lt;a href="#infrastructure-engineering" class="md-heading-anchor"&gt;
+ Infrastructure Engineering
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;h3 id="1-os--network-configuration"&gt;
+ &lt;a href="#1-os--network-configuration" class="md-heading-anchor"&gt;
+ 1. OS &amp;amp; Network Configuration
+ &lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Operating System&lt;/strong&gt;: Selected &lt;strong&gt;Talos OS&lt;/strong&gt; for its secure, immutable, API-managed design. Because Talos has no SSH or terminal package managers, configuration drift is eliminated at the OS layer.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Networking&lt;/strong&gt;: Configured &lt;strong&gt;Flannel&lt;/strong&gt; as the internal pod network fabric and &lt;strong&gt;Traefik Ingress&lt;/strong&gt; for secure external entry routing.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="2-distributed-rookceph-storage"&gt;
+ &lt;a href="#2-distributed-rookceph-storage" class="md-heading-anchor"&gt;
+ 2. Distributed Rook/Ceph Storage
+ &lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Managed high-performance persistent storage by running &lt;strong&gt;Rook/Ceph&lt;/strong&gt; directly on bare-metal worker nodes.&lt;/li&gt;
+&lt;li&gt;Consolidated local SSD storage into a unified Ceph storage pool, providing dynamic, highly available volume provisioning for over &lt;strong&gt;50 database instances&lt;/strong&gt; and &lt;strong&gt;20 virtual machines&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="3-gitops-automation--secrets-management"&gt;
+ &lt;a href="#3-gitops-automation--secrets-management" class="md-heading-anchor"&gt;
+ 3. GitOps Automation &amp;amp; Secrets Management
+ &lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Built a unified GitOps deployment pipeline using &lt;strong&gt;OpenTofu&lt;/strong&gt;, &lt;strong&gt;Ansible&lt;/strong&gt;, &lt;strong&gt;Helm&lt;/strong&gt;, and &lt;strong&gt;GitHub Actions&lt;/strong&gt;. This setup reduced application deployment errors by &lt;strong&gt;75%&lt;/strong&gt; and accelerated feature delivery by &lt;strong&gt;40%&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Integrated &lt;strong&gt;HashiCorp Vault&lt;/strong&gt; and &lt;strong&gt;Bitwarden Secrets Manager&lt;/strong&gt; into the deployment pipelines to prevent plaintext secrets from entering the version control systems.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="4-enterprise-observability--disaster-recovery"&gt;
+ &lt;a href="#4-enterprise-observability--disaster-recovery" class="md-heading-anchor"&gt;
+ 4. Enterprise Observability &amp;amp; Disaster Recovery
+ &lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Designed a unified observability stack integrating &lt;strong&gt;Prometheus&lt;/strong&gt;, &lt;strong&gt;Grafana&lt;/strong&gt;, and &lt;strong&gt;Loki&lt;/strong&gt; to aggregate logs and metrics from both Linux nodes and active Windows Server virtual machines.&lt;/li&gt;
+&lt;li&gt;Authored a comprehensive disaster recovery plan, guaranteeing a &lt;strong&gt;30-minute Recovery Time Objective (RTO)&lt;/strong&gt; across core geological endpoints.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="related"&gt;
+ &lt;a href="#related" class="md-heading-anchor"&gt;
+ Related
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a
+ href="https://fin.oflaherty.is/projects/mimisbrunnr-architecture/"
+ 
+ class="md-link"
+&gt;
+ Mimisbrunnr architecture deep-dive
+&lt;/a&gt;
+ — a parallel homelab cluster built with the same Talos OS + OpenTofu approach used here.&lt;/li&gt;
+&lt;li&gt;&lt;a
+ href="https://fin.oflaherty.is/status/"
+ 
+ class="md-link"
+&gt;
+ Live homelab status page
+&lt;/a&gt;
+ — Prometheus-backed service health dashboard.&lt;/li&gt;
+&lt;li&gt;&lt;a
+ href="https://fin.oflaherty.is/blog/ssl-mismatch-domain-resolution/"
+ 
+ class="md-link"
+&gt;
+ Diagnosing Split-Horizon DNS &amp;amp; SSL Certificate Mismatches
+&lt;/a&gt;
+ — debugging the staging domain resolution issues referenced in this project.&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>Enterprise Staging &amp; OpenTofu Codification</title><link>https://fin.oflaherty.is/projects/enterprise-stage-opentofu/</link><pubDate>Sun, 21 Jun 2026 00:00:00 +0000</pubDate><guid>https://fin.oflaherty.is/projects/enterprise-stage-opentofu/</guid><description>&lt;h2 id="overview"&gt;
+ &lt;a href="#overview" class="md-heading-anchor"&gt;
+ Overview
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;This project focuses on the automation of hosted customer environments on AWS and the resolution of staging domain connectivity bottlenecks.&lt;/p&gt;
+&lt;p&gt;It implements modular &lt;strong&gt;OpenTofu&lt;/strong&gt; configurations to provision isolated multi-tier networks, alongside automated Active Directory (AD) domain migration workflows driven by PowerShell scripting and AWS Systems Manager (SSM) Run Commands.&lt;/p&gt;
+&lt;div class="md-mermaid"&gt;
+ &lt;pre class="mermaid"&gt;
+graph TD
+ subgraph AWS Cloud
+ subgraph Customer VPC
+ ALB[Sticky Session ALB]
+ 
+ subgraph App Tier
+ Prod1[App Server 1]
+ Prod2[App Server 2]
+ Stage[Staging Server]
+ end
+ 
+ subgraph Storage Tier
+ FSx[FSx Windows File Share]
+ end
+ end
+ 
+ subgraph Core Shared Services
+ AD[Active Directory Controller]
+ SQL_Test[(Test SQL Server)]
+ SQL_Prod[(Prod SQL Server)]
+ end
+ 
+ ALB --&gt; Prod1 &amp; Prod2
+ Prod1 &amp; Prod2 --&gt; SQL_Prod
+ Stage --&gt; SQL_Test
+ Prod1 &amp; Prod2 &amp; Stage --&gt; FSx
+ Prod1 &amp; Prod2 &amp; Stage --&gt;|Domain Join| AD
+ end
+ &lt;/pre&gt;
+&lt;/div&gt;
+&lt;h2 id="codified-infrastructure-architecture"&gt;
+ &lt;a href="#codified-infrastructure-architecture" class="md-heading-anchor"&gt;
+ Codified Infrastructure Architecture
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;The environments are split into two execution stages:&lt;/p&gt;</description></item><item><title>Geological Data Platforms</title><link>https://fin.oflaherty.is/projects/geological-databases/</link><pubDate>Sun, 21 Jun 2026 00:00:00 +0000</pubDate><guid>https://fin.oflaherty.is/projects/geological-databases/</guid><description>&lt;h2 id="overview"&gt;
+ &lt;a href="#overview" class="md-heading-anchor"&gt;
+ Overview
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;During my tenure at a &lt;strong&gt;State Geological Research Institute&lt;/strong&gt;, I engineered multiple web applications and APIs designed to make millions of geological data points, microscopic thin sections, and archives accessible to researchers and the public.&lt;/p&gt;
+&lt;p&gt;These initiatives included rebuilding the &lt;strong&gt;Thin Sections Database&lt;/strong&gt; and creating the &lt;strong&gt;Data Preservation Initiative Discovery Portal&lt;/strong&gt;.&lt;/p&gt;
+&lt;div class="md-mermaid"&gt;
+ &lt;pre class="mermaid"&gt;
+graph TD
+ subgraph Data Preservation Portal
+ Client_Pres[Vue.js Web Client] --&gt;|Full-Text Query| Django[Django API Engine]
+ Django --&gt;|Index Query| ES[Full-Text Search Index]
+ Django --&gt;|Ingest Pipeline| Ingest[Worker Queue: 1,000 docs/hr]
+ end
+ 
+ subgraph Thin Sections Portal
+ Client_Thin[Vue.js UI + Caching] --&gt;|REST API| Flask[Flask API Server]
+ Flask --&gt;|Cache Check| Redis[Redis Caching Layer]
+ Flask --&gt;|Query| DB[(Geological SQL Database)]
+ end
+ &lt;/pre&gt;
+&lt;/div&gt;
+&lt;hr&gt;
+&lt;h2 id="1-thin-sections-database-api-and-frontend"&gt;
+ &lt;a href="#1-thin-sections-database-api-and-frontend" class="md-heading-anchor"&gt;
+ 1. Thin Sections Database, API, and Frontend
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;h3 id="the-challenge"&gt;
+ &lt;a href="#the-challenge" class="md-heading-anchor"&gt;
+ The Challenge
+ &lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Geologists require rapid access to high-resolution scans of rock thin sections (microscopic geological samples). The legacy system suffered from sluggish query processing and was unable to scale as user traffic increased.&lt;/p&gt;</description></item><item><title>Mango HA Touchscreen Kiosk</title><link>https://fin.oflaherty.is/projects/mango-ha-kiosk/</link><pubDate>Sun, 21 Jun 2026 00:00:00 +0000</pubDate><guid>https://fin.oflaherty.is/projects/mango-ha-kiosk/</guid><description>&lt;h2 id="overview"&gt;
+ &lt;a href="#overview" class="md-heading-anchor"&gt;
+ Overview
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;This project configures a dedicated, single-purpose Home Assistant kiosk on a &lt;strong&gt;Mango Pi MQ Pro&lt;/strong&gt;—a low-cost single-board computer powered by the &lt;strong&gt;Allwinner D1 RISC-V SoC&lt;/strong&gt; (single core, T-Head C906).&lt;/p&gt;
+&lt;p&gt;To optimize performance and avoid memory starvation, the kiosk operates by running a minimal Wayland compositor (&lt;strong&gt;Cage&lt;/strong&gt;) and a lightweight WPE WebKit browser engine (&lt;strong&gt;Cog&lt;/strong&gt;), bypassing a heavy desktop environment.&lt;/p&gt;
+&lt;div class="md-mermaid"&gt;
+ &lt;pre class="mermaid"&gt;
+graph LR
+ subgraph Mango Pi MQ Pro
+ Systemd[Systemd Service] --&gt; Cage[Cage Wayland Compositor]
+ Cage --&gt; Cog[Cog / WPE WebKit]
+ SW_Raster[Softpipe CPU Rasterizer] --&gt; Cog
+ end
+ subgraph Local Network
+ Cog --&gt;|WebSockets| HA[Home Assistant Ingress]
+ end
+ &lt;/pre&gt;
+&lt;/div&gt;
+&lt;h2 id="system-constraints--solutions"&gt;
+ &lt;a href="#system-constraints--solutions" class="md-heading-anchor"&gt;
+ System Constraints &amp;amp; Solutions
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Running a modern WebKit browser on a single-core RISC-V SoC with 1GB RAM presents significant resource bottlenecks. The following software adjustments were implemented to stabilize the kiosk:&lt;/p&gt;</description></item><item><title>Mimisbrunnr Home Server Cluster</title><link>https://fin.oflaherty.is/projects/mimisbrunnr-home-server/</link><pubDate>Sun, 21 Jun 2026 00:00:00 +0000</pubDate><guid>https://fin.oflaherty.is/projects/mimisbrunnr-home-server/</guid><description>&lt;h2 id="overview"&gt;
+ &lt;a href="#overview" class="md-heading-anchor"&gt;
+ Overview
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Mimisbrunnr&lt;/strong&gt; is a secure, immutable, and fully automated bare-metal home server cluster. Built on top of &lt;strong&gt;Talos Linux&lt;/strong&gt;, a minimal Linux distribution designed specifically for running Kubernetes, the entire infrastructure and application stack is codified and provisioned using &lt;strong&gt;OpenTofu&lt;/strong&gt;.&lt;/p&gt;
+&lt;div class="md-mermaid"&gt;
+ &lt;pre class="mermaid"&gt;
+graph TD
+ subgraph Mimisbrunnr Cluster
+ CP1[Control Plane 1]
+ CP2[Control Plane 2]
+ CP3[Control Plane 3]
+ 
+ K8S[Kubernetes Core]
+ CP1 &amp; CP2 &amp; CP3 --&gt; K8S
+ 
+ subgraph Storage
+ OpenEBS[OpenEBS LocalPV Hostpath]
+ Rook[Rook/Ceph Block Storage]
+ end
+ 
+ subgraph Networking
+ MetalLB[MetalLB VIP]
+ Traefik[Traefik Ingress]
+ AdGuard[AdGuard DNS]
+ end
+ 
+ subgraph Databases
+ CNPG[(CloudNative-PG Postgres)]
+ MinIO[(MinIO S3 Buckets)]
+ end
+ 
+ K8S --&gt; Storage
+ K8S --&gt; Networking
+ K8S --&gt; Databases
+ end
+ &lt;/pre&gt;
+&lt;/div&gt;
+&lt;h2 id="infrastructure-architecture"&gt;
+ &lt;a href="#infrastructure-architecture" class="md-heading-anchor"&gt;
+ Infrastructure Architecture
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;h3 id="1-control-plane--networking"&gt;
+ &lt;a href="#1-control-plane--networking" class="md-heading-anchor"&gt;
+ 1. Control Plane &amp;amp; Networking
+ &lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Nodes&lt;/strong&gt;: Three physical nodes with static IPs (&lt;code&gt;192.168.1.42&lt;/code&gt; - &lt;code&gt;192.168.1.44&lt;/code&gt;) configured as a multi-master control plane.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Load Balancing&lt;/strong&gt;: &lt;strong&gt;MetalLB&lt;/strong&gt; handles IP allocation on the local subnet (&lt;code&gt;192.168.1.80&lt;/code&gt; - &lt;code&gt;192.168.1.90&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Ingress&lt;/strong&gt;: &lt;strong&gt;Traefik Ingress Controller&lt;/strong&gt; exposed on a shared VIP (&lt;code&gt;192.168.1.80&lt;/code&gt;) handles SSL termination and routing.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;DNS&lt;/strong&gt;: &lt;strong&gt;AdGuard Home&lt;/strong&gt; acts as the network-wide DNS server and DHCP authority, running with host networking.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="2-high-availability-database-layer"&gt;
+ &lt;a href="#2-high-availability-database-layer" class="md-heading-anchor"&gt;
+ 2. High-Availability Database Layer
+ &lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;CloudNative-PG&lt;/strong&gt;: A Postgres operator manages highly-available clustered databases in a 3-instance primary/replica setup. Databases are provisioned for Authelia, Home Assistant, LLDAP, and Forgejo.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Backup Strategy&lt;/strong&gt;: Daily database backups are streamed using Barman to a local &lt;strong&gt;MinIO&lt;/strong&gt; S3 bucket, which replicates offsite.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;NFS backups&lt;/strong&gt;: Nightly cronjobs capture application config PVCs and copy them as timestamped tarballs to a QNAP NAS.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="3-identity--single-sign-on-sso"&gt;
+ &lt;a href="#3-identity--single-sign-on-sso" class="md-heading-anchor"&gt;
+ 3. Identity &amp;amp; Single Sign-On (SSO)
+ &lt;/a&gt;
+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Directory Services&lt;/strong&gt;: &lt;strong&gt;LLDAP&lt;/strong&gt; acts as a lightweight LDAP directory service.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Auth Portal&lt;/strong&gt;: &lt;strong&gt;Authelia&lt;/strong&gt; provides modern Multi-Factor Authentication (MFA) and Single Sign-On (SSO) integration across the cluster services (routing via &lt;code&gt;auth.treee.house&lt;/code&gt;).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="deployed-applications"&gt;
+ &lt;a href="#deployed-applications" class="md-heading-anchor"&gt;
+ Deployed Applications
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Home Automation&lt;/strong&gt;: &lt;strong&gt;Home Assistant&lt;/strong&gt; runs with host networking for direct discovery of IoT devices.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Media Delivery&lt;/strong&gt;: &lt;strong&gt;Jellyfin&lt;/strong&gt; (media server), &lt;strong&gt;Navidrome&lt;/strong&gt; (music streaming via LDAP auth), and &lt;strong&gt;Kavita&lt;/strong&gt; (digital library).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Automation Pipeline&lt;/strong&gt;: &lt;strong&gt;Sonarr&lt;/strong&gt;, &lt;strong&gt;Radarr&lt;/strong&gt;, &lt;strong&gt;Ombi&lt;/strong&gt;, and &lt;strong&gt;qBittorrent&lt;/strong&gt; (isolated with a secure NordVPN WireGuard sidecar to route traffic privately).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ESP32 Gateway&lt;/strong&gt;: &lt;strong&gt;PicFrames&lt;/strong&gt; slideshow gateway server (manages e-paper bitmap distribution and OTA firmware updates).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="related"&gt;
+ &lt;a href="#related" class="md-heading-anchor"&gt;
+ Related
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a
+ href="https://fin.oflaherty.is/projects/mimisbrunnr-architecture/"
+ 
+ class="md-link"
+&gt;
+ Architecture deep-dive: Mimisbrunnr cluster design
+&lt;/a&gt;
+ — Mermaid diagrams of the node layout, MetalLB → Traefik ingress flow, storage topology, auth flow, and backup pipeline.&lt;/li&gt;
+&lt;li&gt;&lt;a
+ href="https://fin.oflaherty.is/status/"
+ 
+ class="md-link"
+&gt;
+ Live cluster status
+&lt;/a&gt;
+ — real-time service health pulled from Prometheus.&lt;/li&gt;
+&lt;li&gt;&lt;a
+ href="https://fin.oflaherty.is/blog/adguard-subnet-debugging/"
+ 
+ class="md-link"
+&gt;
+ Debugging AdGuard Home DHCP and a bad /22 experiment
+&lt;/a&gt;
+ — a late-night war story about the network layer that underpins the cluster.&lt;/li&gt;
+&lt;li&gt;&lt;a
+ href="https://fin.oflaherty.is/blog/ombi-radarr-database-locks/"
+ 
+ class="md-link"
+&gt;
+ Solving SQLite Database Locks in Ombi
+&lt;/a&gt;
+ — tracking down lock contention in the media request stack running on this cluster.&lt;/li&gt;
+&lt;li&gt;Infrastructure source: the sanitized OpenTofu config for this cluster is coming soon on GitHub.&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>Parametric 3D-Printable Corner Brackets</title><link>https://fin.oflaherty.is/projects/open-scad-corner-bracket/</link><pubDate>Sun, 21 Jun 2026 00:00:00 +0000</pubDate><guid>https://fin.oflaherty.is/projects/open-scad-corner-bracket/</guid><description>&lt;h2 id="overview"&gt;
+ &lt;a href="#overview" class="md-heading-anchor"&gt;
+ Overview
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;This project defines a 3D-printable corner bracket designed in &lt;strong&gt;OpenSCAD&lt;/strong&gt; that holds three sheets of plexiglass meeting at right angles—forming the secure corner of a cube, enclosure, or display case.&lt;/p&gt;
+&lt;p&gt;The design is fully &lt;strong&gt;parametric&lt;/strong&gt;: adjusting variables at the top of the file automatically re-calculates all slot widths, tolerances, wall thicknesses, and structural features for rendering and exporting to STL.&lt;/p&gt;
+&lt;div class="md-mermaid"&gt;
+ &lt;pre class="mermaid"&gt;
+graph TD
+ subgraph OpenSCAD Model
+ Params[Parameters: thickness, depth, wall, tolerance]
+ Params --&gt; Std[Symmetric Corner Bracket]
+ Params --&gt; Tight[Tight Box Variant]
+ end
+ 
+ subgraph Features
+ Std --&gt;|Symmetric Slots| Gap[Small convergence gap at core]
+ Tight --&gt;|Pinwheel Cycle| Seamless[Seamless plexiglass interface]
+ end
+ &lt;/pre&gt;
+&lt;/div&gt;
+&lt;h2 id="key-parameters"&gt;
+ &lt;a href="#key-parameters" class="md-heading-anchor"&gt;
+ Key Parameters
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;Parameter&lt;/th&gt;
+					&lt;th&gt;Default&lt;/th&gt;
+					&lt;th&gt;Description&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;code&gt;plexi_thickness&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;3 mm&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;Thickness of the plexiglass sheets&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;code&gt;slot_depth&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;15 mm&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;How far each sheet slides into its slot&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;code&gt;wall&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;4 mm&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;Solid material thickness surrounding the slots&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;code&gt;slot_tolerance&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;0.2 mm&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;Extra clearance added to slot width to ensure slide-fit&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id="design-variants"&gt;
+ &lt;a href="#design-variants" class="md-heading-anchor"&gt;
+ Design Variants
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;h3 id="1-standard-symmetric-bracket"&gt;
+ &lt;a href="#1-standard-symmetric-bracket" class="md-heading-anchor"&gt;
+ 1. Standard Symmetric Bracket
+ &lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Provides three orthogonal slots (XY, XZ, YZ planes). The sheets slide in and meet at the center. This design is simple and prints easily, but leaves a tiny gap at the innermost convergence point of the three sheets.&lt;/p&gt;</description></item><item><title>PicFrames E-Paper Controller</title><link>https://fin.oflaherty.is/projects/picframes-epaper-controller/</link><pubDate>Sun, 21 Jun 2026 00:00:00 +0000</pubDate><guid>https://fin.oflaherty.is/projects/picframes-epaper-controller/</guid><description>&lt;h2 id="overview"&gt;
+ &lt;a href="#overview" class="md-heading-anchor"&gt;
+ Overview
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;This project implements a distributed, battery-optimized e-paper slideshow system designed for a fleet of &lt;strong&gt;Waveshare ESP32-S3-PhotoPainter&lt;/strong&gt; frames (7.3″ 6-color Spectra e-paper displays).&lt;/p&gt;
+&lt;p&gt;To maximize battery life and simplify client-side hardware, the system splits work between a central server (Flask backend running in Kubernetes) and a fleet of low-power ESP32-S3 MicroPython clients.&lt;/p&gt;
+&lt;div class="md-mermaid"&gt;
+ &lt;pre class="mermaid"&gt;
+sequenceDiagram
+ participant Frame as ESP32-S3 Frame
+ participant Server as Flask Server
+ 
+ Frame-&gt;&gt;Server: Wakeup (POST /api/wakeup + MAC)
+ Note over Server: Check version, check assigned image
+ alt Client needs files
+ Server--&gt;&gt;Frame: REDOWNLOAD suffix
+ Frame-&gt;&gt;Server: Get daily.zip (GET /api/daily-zip)
+ Server--&gt;&gt;Frame: daily.zip (dithered 4bpp bin files + config)
+ Note over Frame: Decompress to SD card
+ end
+ 
+ Server--&gt;&gt;Frame: WAIT - image.bin
+ Note over Frame: Poll every 15s (GATHERING Phase)
+ Server--&gt;&gt;Frame: READY - image.bin
+ Note over Frame: Poll every 1s (READY Phase)
+ Server--&gt;&gt;Frame: CHANGE - image.bin
+ Note over Frame: Stream 4bpp bitstream to SPI
+ Note over Frame: Command Deep Sleep (AXP2101 Rails Off)
+ &lt;/pre&gt;
+&lt;/div&gt;
+&lt;h2 id="core-architecture"&gt;
+ &lt;a href="#core-architecture" class="md-heading-anchor"&gt;
+ Core Architecture
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;h3 id="1-server-side-dithering--pre-processing"&gt;
+ &lt;a href="#1-server-side-dithering--pre-processing" class="md-heading-anchor"&gt;
+ 1. Server-Side Dithering &amp;amp; Pre-Processing
+ &lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;Instead of wasting battery processing images on the ESP32-S3 CPU, a central Flask server performs all transformations:&lt;/p&gt;</description></item></channel></rss>

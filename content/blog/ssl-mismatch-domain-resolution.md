@@ -67,3 +67,7 @@ To fix the mismatch:
 1. **Applied Certs to Private ALBs**: Codified and applied the updated ACM certificate resource association to the internal load balancers.
 2. **DNS Cache Flush**: Flushed the local resolver caches on the LogicMonitor collector VMs.
 3. **Automated Verifications**: Integrated an automated check into the Route 53 health-check modules to query *both* public and private DNS endpoints during deployment runs, ensuring certificate parity.
+
+---
+
+This work was part of the broader [Enterprise Staging & OpenTofu Codification](/projects/enterprise-stage-opentofu/) project.

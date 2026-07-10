@@ -58,3 +58,10 @@ To synchronize slideshow transitions across frames without inter-device wiring, 
 1. **GATHERING**: Nodes wake up and check in. The server flags them if a database update occurred, triggering a download of `/api/daily-zip` containing new images and the list manifest.
 2. **READY**: Once all nodes check in and confirm they have the targeted image, the server transitions the phase. Clients speed up polling to 1-second intervals.
 3. **CHANGE**: Once all nodes are ready, the server issues the change command. The frames write the images to their screens simultaneously, and power down.
+
+---
+
+## Related
+
+- [The MicroPython Boot Loop: Chasing an OTA Bug Across Three ESP32 Devices](/blog/picframes-ota-loop/) — a debugging war story about a silent `sys.path` shadowing bug that locked all frames in an infinite firmware-update cycle.
+- Server source: [github.com/finn-e/picframes-server](https://github.com/finn-e/picframes-server)

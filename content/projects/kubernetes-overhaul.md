@@ -60,3 +60,11 @@ graph TD
 ### 4. Enterprise Observability & Disaster Recovery
 - Designed a unified observability stack integrating **Prometheus**, **Grafana**, and **Loki** to aggregate logs and metrics from both Linux nodes and active Windows Server virtual machines.
 - Authored a comprehensive disaster recovery plan, guaranteeing a **30-minute Recovery Time Objective (RTO)** across core geological endpoints.
+
+---
+
+## Related
+
+- [Mimisbrunnr architecture deep-dive](/projects/mimisbrunnr-architecture/) — a parallel homelab cluster built with the same Talos OS + OpenTofu approach used here.
+- [Live homelab status page](/status/) — Prometheus-backed service health dashboard.
+- [Diagnosing Split-Horizon DNS & SSL Certificate Mismatches](/blog/ssl-mismatch-domain-resolution/) — debugging the staging domain resolution issues referenced in this project.

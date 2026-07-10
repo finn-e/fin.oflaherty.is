@@ -76,3 +76,9 @@ Cloning application environments in an AD-managed enterprise network causes SID 
 - **Investigation**: Troubleshooted domain resolution issues for the staging URL (`stage.cloud.enterprise.com`).
 - **Root Cause**: Identified differences in DNS views (split-horizon DNS) causing internal collectors (e.g. LogicMonitor) to resolve stale IP addresses while public DNS resolved correctly.
 - **Resolution**: Implemented localized hosts override files, DNS routing table updates, and SSL cert verification checkpoints to ensure matching states across public and private scopes.
+
+---
+
+## Related
+
+- [Diagnosing Split-Horizon DNS & SSL Certificate Mismatches](/blog/ssl-mismatch-domain-resolution/) — the full debugging write-up of the staging domain resolution issue described above.

@@ -66,3 +66,7 @@ This causes `ResolveDirectories` to enter an infinite loop trying to acquire a l
 To bypass this build-specific bug while the WebKit package is being patched for RISC-V:
 1. **ZRAM & Swap**: We verified that 4.5GB swap is active to prevent OOM when the browser runs, as memory constraints worsen threading collisions.
 2. **Package pinning**: Downgraded to a stable Debian Ports release of WPE WebKit which compiles atomic locks using alternative libatomic routines, bypassing the T-Head compiler bug and successfully loading the kiosk dashboard.
+
+---
+
+This board is the hardware core of the [Mango HA Touchscreen Kiosk](/projects/mango-ha-kiosk/) project.

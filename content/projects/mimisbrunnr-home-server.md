@@ -70,3 +70,13 @@ graph TD
 - **Media Delivery**: **Jellyfin** (media server), **Navidrome** (music streaming via LDAP auth), and **Kavita** (digital library).
 - **Automation Pipeline**: **Sonarr**, **Radarr**, **Ombi**, and **qBittorrent** (isolated with a secure NordVPN WireGuard sidecar to route traffic privately).
 - **ESP32 Gateway**: **PicFrames** slideshow gateway server (manages e-paper bitmap distribution and OTA firmware updates).
+
+---
+
+## Related
+
+- [Architecture deep-dive: Mimisbrunnr cluster design](/projects/mimisbrunnr-architecture/) — Mermaid diagrams of the node layout, MetalLB → Traefik ingress flow, storage topology, auth flow, and backup pipeline.
+- [Live cluster status](/status/) — real-time service health pulled from Prometheus.
+- [Debugging AdGuard Home DHCP and a bad /22 experiment](/blog/adguard-subnet-debugging/) — a late-night war story about the network layer that underpins the cluster.
+- [Solving SQLite Database Locks in Ombi](/blog/ombi-radarr-database-locks/) — tracking down lock contention in the media request stack running on this cluster.
+- Infrastructure source: the sanitized OpenTofu config for this cluster is coming soon on GitHub.

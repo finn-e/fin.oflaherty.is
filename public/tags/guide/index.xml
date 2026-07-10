@@ -1,24 +1,20 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-	<channel>
-		<title>Guide on fin.oflaherty.is | Site Reliability Engineer</title>
-		<link>https://fin.oflaherty.is/tags/guide/</link>
-		<description>Recent content in Guide on fin.oflaherty.is | Site Reliability Engineer</description>
-		<generator>Hugo</generator>
-		<language>en-us</language>
-		
-		
-		
-		
-			<lastBuildDate>Wed, 15 Jan 2025 00:00:00 +0000</lastBuildDate>
-		
-			<atom:link href="https://fin.oflaherty.is/tags/guide/index.xml" rel="self" type="application/rss+xml" />
-			<item>
-				<title>Complete Guide to Minimal Black Theme</title>
-				<link>https://fin.oflaherty.is/blog/theme-guide/</link>
-				<pubDate>Wed, 15 Jan 2025 00:00:00 +0000</pubDate>
-				<guid>https://fin.oflaherty.is/blog/theme-guide/</guid>
-				<description>&lt;p&gt;Welcome to the complete guide for the Minimal Black Hugo theme!&lt;/p&gt;&#xA;&lt;p&gt;This post demonstrates all the features, components, and customization options available in the theme.&lt;/p&gt;&#xA;&lt;h2 id=&#34;introduction&#34;&gt;&#xA;  &lt;a href=&#34;#introduction&#34; class=&#34;md-heading-anchor&#34;&gt;&#xA;    Introduction&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;Minimal Black is designed for developers, designers, and everybody who want a clean, fast, and beautiful personal website.&lt;/p&gt;&#xA;&lt;p&gt;This guide will walk you through every feature with examples you can use in your own content.&lt;/p&gt;&#xA;&lt;h2 id=&#34;typography--text-formatting&#34;&gt;&#xA;  &lt;a href=&#34;#typography--text-formatting&#34; class=&#34;md-heading-anchor&#34;&gt;&#xA;    Typography &amp;amp; Text Formatting&#xA;  &lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;h3 id=&#34;headings&#34;&gt;&#xA;  &lt;a href=&#34;#headings&#34; class=&#34;md-heading-anchor&#34;&gt;&#xA;    Headings&#xA;  &lt;/a&gt;&#xA;&lt;/h3&gt;&#xA;&lt;p&gt;The theme supports all six heading levels with proper hierarchy and spacing:&lt;/p&gt;</description>
-			</item>
-	</channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Guide on fin.oflaherty.is | Site Reliability Engineer</title><link>https://fin.oflaherty.is/tags/guide/</link><description>Recent content in Guide on fin.oflaherty.is | Site Reliability Engineer</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 15 Jan 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://fin.oflaherty.is/tags/guide/index.xml" rel="self" type="application/rss+xml"/><item><title>Complete Guide to Minimal Black Theme</title><link>https://fin.oflaherty.is/blog/theme-guide/</link><pubDate>Wed, 15 Jan 2025 00:00:00 +0000</pubDate><guid>https://fin.oflaherty.is/blog/theme-guide/</guid><description>&lt;p&gt;Welcome to the complete guide for the Minimal Black Hugo theme!&lt;/p&gt;
+&lt;p&gt;This post demonstrates all the features, components, and customization options available in the theme.&lt;/p&gt;
+&lt;h2 id="introduction"&gt;
+ &lt;a href="#introduction" class="md-heading-anchor"&gt;
+ Introduction
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;Minimal Black is designed for developers, designers, and everybody who want a clean, fast, and beautiful personal website.&lt;/p&gt;
+&lt;p&gt;This guide will walk you through every feature with examples you can use in your own content.&lt;/p&gt;
+&lt;h2 id="typography--text-formatting"&gt;
+ &lt;a href="#typography--text-formatting" class="md-heading-anchor"&gt;
+ Typography &amp;amp; Text Formatting
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;h3 id="headings"&gt;
+ &lt;a href="#headings" class="md-heading-anchor"&gt;
+ Headings
+ &lt;/a&gt;
+&lt;/h3&gt;
+&lt;p&gt;The theme supports all six heading levels with proper hierarchy and spacing:&lt;/p&gt;</description></item></channel></rss>

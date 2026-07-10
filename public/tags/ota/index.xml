@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Ota on fin.oflaherty.is | Site Reliability Engineer</title><link>https://fin.oflaherty.is/tags/ota/</link><description>Recent content in Ota on fin.oflaherty.is | Site Reliability Engineer</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 08 Jul 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://fin.oflaherty.is/tags/ota/index.xml" rel="self" type="application/rss+xml"/><item><title>The MicroPython Boot Loop: Chasing an OTA Bug Across Three ESP32 Devices</title><link>https://fin.oflaherty.is/blog/picframes-ota-loop/</link><pubDate>Wed, 08 Jul 2026 00:00:00 +0000</pubDate><guid>https://fin.oflaherty.is/blog/picframes-ota-loop/</guid><description>&lt;h2 id="the-symptom"&gt;
+ &lt;a href="#the-symptom" class="md-heading-anchor"&gt;
+ The Symptom
+ &lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;It started as a minor annoyance: the e-paper frames in my
+&lt;a
+ href="https://fin.oflaherty.is/projects/picframes-epaper-controller/"
+ 
+ class="md-link"
+&gt;
+ PicFrames
+&lt;/a&gt;
+ fleet had stopped cycling photos. The
+displays were showing images — the same images they&amp;rsquo;d been showing for days — but the server
+dashboard showed none of the devices had phoned home recently. No &lt;code&gt;last_seen&lt;/code&gt; timestamps, no
+firmware version reported, just stale check-ins from before I&amp;rsquo;d pushed the latest firmware
+release.&lt;/p&gt;
+&lt;p&gt;I figured a device had dropped off wifi or the server had a bug. I checked the server logs.
+The server was fine. I pulled up the ESP32&amp;rsquo;s serial output over USB to see what was happening.&lt;/p&gt;</description></item></channel></rss>
