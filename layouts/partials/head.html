@@ -25,7 +25,7 @@
 
 <!-- Apple Touch Icon -->
 {{ if .Site.Params.appleTouchIcon }}
-  <link rel="apple-touch-icon" href="{{ . | relURL }}" />
+  <link rel="apple-touch-icon" href="{{ .Site.Params.appleTouchIcon | relURL }}" />
 {{ else if fileExists "static/apple-touch-icon.png" }}
   <link rel="apple-touch-icon" href="{{ "apple-touch-icon.png" | relURL }}" />
 {{ end }}
