@@ -1,4 +1,4 @@
 {
-  "updated": "2026-07-15T10:30:03Z",
+  "updated": "2026-07-15T11:00:02Z",
   "services": [{"name":"Jellyfin","description":"Media streaming","up":true,"uptime_30d":100.0},{"name":"Home Assistant","description":"Home automation","up":true,"uptime_30d":100.0},{"name":"Grafana","description":"Metrics & dashboards","up":true,"uptime_30d":100.0},{"name":"Forgejo","description":"Git hosting","up":true,"uptime_30d":100.0},{"name":"Navidrome","description":"Music streaming","up":true,"uptime_30d":100.0},{"name":"AdGuard Home","description":"DNS & ad-blocking","up":true,"uptime_30d":100.0},{"name":"Prometheus","description":"Metrics collection","up":true,"uptime_30d":100.0}]
 }
