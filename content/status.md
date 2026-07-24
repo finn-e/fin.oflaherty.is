@@ -1,7 +1,7 @@
 +++
 title = "Service Status"
 date = "2026-07-10"
-description = "Live status of homelab services running on the Mimisbrunnr cluster."
+description = "Status of homelab services running on the Mimisbrunnr cluster (with a 24-hour security delay)."
 +++
 
 <div id="status-root">
@@ -98,7 +98,8 @@ description = "Live status of homelab services running on the Mimisbrunnr cluste
 
     var metaEl = document.createElement('p');
     metaEl.className = 'status-meta';
-    metaEl.textContent = 'Last updated: ' + updated.toLocaleString();
+    var delayedTime = new Date(updated.getTime() - 24 * 60 * 60 * 1000);
+    metaEl.innerHTML = 'Last checked: ' + updated.toLocaleString() + ' <span style="opacity: 0.7;">(Showing status as of ' + delayedTime.toLocaleString() + ' &mdash; 24h security delay)</span>';
 
     var grid = document.createElement('div');
     grid.className = 'status-grid';

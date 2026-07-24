@@ -327,6 +327,15 @@ theme = "minimal-black"
     [menu.main.params]
       icon = "fa-regular fa-note-sticky"
 
+  [[menu.main]]
+    name = "Cluster Status"
+    pageRef = "status"
+    url = "/status/"
+    weight = 5
+    identifier = "status"
+    [menu.main.params]
+      icon = "fa-solid fa-server"
+
 # Markup Configuration
 [markup]
   # Table of Contents

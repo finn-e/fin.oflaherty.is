@@ -7,7 +7,9 @@
 </a><a href=/projects/ class="nav-link link-underline flex items-center gap-1"><i class="fa-regular fa-folder-open text-[0.75rem]"></i>
 <span>Projects</span>
 </a><a href=/blog/ class="nav-link link-underline flex items-center gap-1"><i class="fa-regular fa-note-sticky text-[0.75rem]"></i>
-<span>Blog</span></a></nav><button type=button class=theme-toggle aria-label="Toggle dark mode" data-theme-toggle>
+<span>Blog</span>
+</a><a href=/status/ class="nav-link link-underline flex items-center gap-1"><i class="fa-solid fa-server text-[0.75rem]"></i>
+<span>Cluster Status</span></a></nav><button type=button class=theme-toggle aria-label="Toggle dark mode" data-theme-toggle>
 <span data-theme-icon-light style=display:none><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.364-6.364L16.95 7.05m-8.9 8.9-1.414 1.414m0-11.314 1.414 2m9.9 9.9-1.414-1.414"/></svg>
 </span><span data-theme-icon-dark><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 0112.21 3 7 7 0 1021 12.79z"/></svg>
 </span></button>
@@ -22,7 +24,9 @@
 </a><a href=/projects/ class="flex items-center gap-2 py-1.5"><i class="fa-regular fa-folder-open text-[0.8rem]"></i>
 <span>Projects</span>
 </a><a href=/blog/ class="flex items-center gap-2 py-1.5"><i class="fa-regular fa-note-sticky text-[0.8rem]"></i>
-<span>Blog</span></a></nav></div></header><main class=flex-1><section class="layout-page section-stack"><div class=article-layout><article class="article-main space-y-4"><header class=space-y-2><h1 class="heading-page text-2xl sm:text-3xl">Debugging WPE WebKit & Cog Startup Hangs on RISC-V</h1><div class="text-[0.75rem] text-muted"><span>10 Jun 2026</span>
+<span>Blog</span>
+</a><a href=/status/ class="flex items-center gap-2 py-1.5"><i class="fa-solid fa-server text-[0.8rem]"></i>
+<span>Cluster Status</span></a></nav></div></header><main class=flex-1><section class="layout-page section-stack"><div class=article-layout><article class="article-main space-y-4"><header class=space-y-2><h1 class="heading-page text-2xl sm:text-3xl">Debugging WPE WebKit & Cog Startup Hangs on RISC-V</h1><div class="text-[0.75rem] text-muted"><span>10 Jun 2026</span>
 <span>• 3 min read</span></div><p class="max-w-xl text-sm text-muted">A forensic analysis of threading and synchronization loops in WPE WebKit on the Allwinner D1 RISC-V SoC.</p></header><div class="card card-pad"><div class=markdown-body><h2 id=the-symptom><a href=#the-symptom class=md-heading-anchor>The Symptom</a></h2><p>When building a lightweight Home Assistant touchscreen kiosk using a <strong>Mango Pi MQ Pro</strong> (Allwinner D1 RISC-V SoC), I opted to bypass a heavy desktop environment. Instead, I ran a bare-metal Wayland compositor (<strong>Cage</strong>) and the lightweight WPE WebKit browser engine launcher (<strong>Cog</strong>).</p><p>However, during boot initialization, the browser would launch a blank window and hang indefinitely, never attempting to resolve or load the target Home Assistant URL.</p><hr><h2 id=initial-investigation--forensics><a href=#initial-investigation--forensics class=md-heading-anchor>Initial Investigation & Forensics</a></h2><p>To locate the bottleneck, I logged into the board via serial console and inspected resource utilization with <code>htop</code> and <code>ps</code>.</p><p>The CPU was spinning constantly. Taking a thread trace of the <code>cog</code> process revealed the following state:</p><div class=mb-codeblock id=cb-5feceb66 data-lang=text><div class=mb-codeblock-header><div class=mb-codeblock-left><span class=mb-codeblock-badge>TEXT</span></div><div class=mb-codeblock-actions><button class="mb-action-btn mb-collapse-btn" data-collapsed=false aria-label="Collapse code">
 <i class="fas fa-compress-alt"></i>
 <span>Collapse</span>

@@ -96,14 +96,14 @@ build_services_json() {
     local job="${SERVICES[$name]}"
     local desc="${SERVICE_DESCRIPTIONS[$name]:-}"
 
-    # Current up status: up{job="<job>"} — returns 1 (up) or 0 (down) or null
+    # Current up status: up{job="<job>"} offset 1d — returns 1 (up) or 0 (down) or null
     local up_val
-    up_val=$(promql_query "up{job=\"${job}\"}" 2>/dev/null || echo "null")
+    up_val=$(promql_query "up{job=\"${job}\"} offset 1d" 2>/dev/null || echo "null")
 
-    # 30-day uptime percentage
-    # avg_over_time(up{job="<job>"}[30d]) * 100
+    # 30-day uptime percentage ending 1 day ago
+    # avg_over_time(up{job="<job>"}[30d] offset 1d) * 100
     local uptime_val
-    uptime_val=$(promql_query "avg_over_time(up{job=\"${job}\"}[30d]) * 100" 2>/dev/null || echo "null")
+    uptime_val=$(promql_query "avg_over_time(up{job=\"${job}\"}[30d] offset 1d) * 100" 2>/dev/null || echo "null")
 
     # Determine up boolean
     local up_bool="false"

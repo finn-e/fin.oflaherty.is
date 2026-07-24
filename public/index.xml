@@ -443,9 +443,9 @@ graph TD
  
  class="md-link"
 &gt;
- Live cluster status
+ Cluster Status dashboard
 &lt;/a&gt;
- — real-time service health pulled from Prometheus.&lt;/li&gt;
+ — historical status and uptime metrics (delayed 24 hours for cluster security).&lt;/li&gt;
 &lt;li&gt;&lt;a
  href="https://fin.oflaherty.is/blog/adguard-subnet-debugging/"
  

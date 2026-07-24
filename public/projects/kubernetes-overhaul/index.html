@@ -7,7 +7,9 @@
 </a><a href=/projects/ class="nav-link link-underline flex items-center gap-1"><i class="fa-regular fa-folder-open text-[0.75rem]"></i>
 <span>Projects</span>
 </a><a href=/blog/ class="nav-link link-underline flex items-center gap-1"><i class="fa-regular fa-note-sticky text-[0.75rem]"></i>
-<span>Blog</span></a></nav><button type=button class=theme-toggle aria-label="Toggle dark mode" data-theme-toggle>
+<span>Blog</span>
+</a><a href=/status/ class="nav-link link-underline flex items-center gap-1"><i class="fa-solid fa-server text-[0.75rem]"></i>
+<span>Cluster Status</span></a></nav><button type=button class=theme-toggle aria-label="Toggle dark mode" data-theme-toggle>
 <span data-theme-icon-light style=display:none><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.364-6.364L16.95 7.05m-8.9 8.9-1.414 1.414m0-11.314 1.414 2m9.9 9.9-1.414-1.414"/></svg>
 </span><span data-theme-icon-dark><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 0112.21 3 7 7 0 1021 12.79z"/></svg>
 </span></button>
@@ -22,7 +24,9 @@
 </a><a href=/projects/ class="flex items-center gap-2 py-1.5"><i class="fa-regular fa-folder-open text-[0.8rem]"></i>
 <span>Projects</span>
 </a><a href=/blog/ class="flex items-center gap-2 py-1.5"><i class="fa-regular fa-note-sticky text-[0.8rem]"></i>
-<span>Blog</span></a></nav></div></header><main class=flex-1><section class="layout-page section-stack"><div class=article-layout><article class="article-main space-y-4"><header class=space-y-2><h1 class="heading-page text-2xl sm:text-3xl">Bare-Metal Kubernetes Overhaul</h1><div class="text-[0.75rem] text-muted"><span>21 Jun 2026</span>
+<span>Blog</span>
+</a><a href=/status/ class="flex items-center gap-2 py-1.5"><i class="fa-solid fa-server text-[0.8rem]"></i>
+<span>Cluster Status</span></a></nav></div></header><main class=flex-1><section class="layout-page section-stack"><div class=article-layout><article class="article-main space-y-4"><header class=space-y-2><h1 class="heading-page text-2xl sm:text-3xl">Bare-Metal Kubernetes Overhaul</h1><div class="text-[0.75rem] text-muted"><span>21 Jun 2026</span>
 <span>• 2 min read</span></div><p class="max-w-xl text-sm text-muted">Designing and implementing an 18-node bare-metal Kubernetes cluster for geological research platforms.</p></header><div class="card card-pad"><div class=markdown-body><h2 id=overview><a href=#overview class=md-heading-anchor>Overview</a></h2><p>At a <strong>State Geological Research Institute</strong>, the legacy server infrastructure supporting geological research, web APIs, and data indexing tools was aging and prone to configuration drift.</p><p>To resolve these challenges, I designed and implemented an <strong>18-node bare-metal Kubernetes cluster</strong> driven by <strong>Talos OS</strong> and automated entirely via declarative GitOps pipelines, achieving <strong>99.99% uptime</strong> for mission-critical geological research tools.</p><div class=md-mermaid><pre class=mermaid>
 graph TD
     subgraph 18-Node Bare-Metal Cluster

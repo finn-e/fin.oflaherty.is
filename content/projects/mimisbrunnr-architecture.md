@@ -146,7 +146,7 @@ The **kube-prometheus-stack** Helm release deploys:
 - **Prometheus** — scrapes metrics from all cluster components (node-exporter, kube-state-metrics, Traefik, CNPG, etc.) and evaluates alerting rules
 - **Grafana** — dashboards for cluster health, database replication lag, storage usage, and network throughput; SSO-integrated via the Authelia ForwardAuth middleware
 
-A live summary of key services is also available at [/status/](/status/).
+A summary of key services is also available on the [Cluster Status](/status/) page (delayed 24 hours).
 
 ---
 
